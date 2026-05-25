@@ -8,7 +8,7 @@
         '<div class="vz-top__inner">'+
           '<div>🎁 10 % na první objednávku: <strong>CHLUPY10</strong></div>'+
           '<div>⚡ Odeslání do 24 hodin</div>'+
-          '<div>🚚 Doprava zdarma od 999 Kč</div>'+
+          '<div>🚚 Doprava zdarma od 1499 Kč</div>'+
           '<div>↩️ Vrácení do 14 dnů</div>'+
           '<div>📞 <a href="tel:774318382">774 318 382</a></div>'+
         '</div>'+
