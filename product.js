@@ -38,11 +38,11 @@
   var nameEl = document.querySelector('[data-testid="productCardName"], h1');
   var crumbs = document.querySelector('.breadcrumbs');
 
-  var pageText = normalizeText([
-    nameEl ? nameEl.textContent : '',
-    crumbs ? crumbs.textContent : '',
-    document.title
-  ].join(' '));
+  var productName = normalizeText(nameEl ? nameEl.textContent : '');
+  var breadcrumbText = normalizeText(crumbs ? crumbs.textContent : '');
+  var titleText = normalizeText(document.title);
+
+  var pageText = [productName, breadcrumbText, titleText].join(' ');
 
   var fit = {
     label:'Doporučení',
@@ -53,7 +53,16 @@
     use:'Vyberte podle potřeby mazlíčka a řiďte se doporučením u produktu.'
   };
 
-  if(/skrab/.test(pageText)){
+  if(/sampon|sampón|kondicion|sprej|kosmetik|srst|shampoo|conditioner|animology|flea|tick/.test(productName)){
+    fit = {
+      label:'Péče o srst',
+      title:'Čistší a příjemnější srst bez složité péče',
+      intro:'Vhodné pro běžnou hygienu, péči o srst a lepší pocit mazlíčka.',
+      who:'Pro psy a kočky, kteří potřebují čistší, voňavější nebo lépe upravitelnou srst.',
+      solves:'Pomáhá s hygienou, zápachem, rozčesáváním a péčí o srst.',
+      use:'Používejte podle návodu na obalu a typu srsti vašeho mazlíčka.'
+    };
+  }else if(/skrab/.test(pageText)){
     fit = {
       label:'Pro kočky',
       title:'Vlastní místo na škrábání i odpočinek',
@@ -62,7 +71,7 @@
       solves:'Chrání nábytek a podporuje přirozené obrušování drápků.',
       use:'Dejte ho tam, kde kočka odpočívá nebo už zkouší škrábat.'
     };
-  }else if(/kartac|hreben|hrablo|vyces|rukavic|furminator|chlup|linan/.test(pageText)){
+  }else if(/kartac|kartáč|hreben|hřeben|hrablo|vyces|vyčes|rukavic|furminator|chlup|linan|línán/.test(pageText)){
     fit = {
       label:'Proti línání',
       title:'Méně chlupů doma a lepší péče o srst',
@@ -71,16 +80,7 @@
       solves:'Odstraňuje uvolněné chlupy a pomáhá omezit chlupy v bytě, na gauči, oblečení i v autě.',
       use:'Vyčesávejte jemně podle typu srsti, ideálně několikrát týdně.'
     };
-  }else if(/sampon|kondicion|sprej|kosmetik|srst|shampoo|conditioner/.test(pageText)){
-    fit = {
-      label:'Péče o srst',
-      title:'Čistší a příjemnější srst bez složité péče',
-      intro:'Vhodné pro běžnou hygienu, rozčesání a lepší pocit ze srsti.',
-      who:'Pro mazlíčky, kteří potřebují čistší nebo lépe upravitelnou srst.',
-      solves:'Pomáhá s hygienou, vůní, rozčesáváním a péčí o srst.',
-      use:'Používejte podle návodu na obalu a typu srsti vašeho mazlíčka.'
-    };
-  }else if(/fontan|napajec/.test(pageText)){
+  }else if(/fontan|fontán|napajec|napáječ/.test(pageText)){
     fit = {
       label:'Pitný režim',
       title:'Čerstvá voda, která kočku víc láká',
@@ -98,7 +98,7 @@
       solves:'Snižuje každodenní úklid a pomáhá udržet okolí toalety čistější.',
       use:'Používejte podle návodu výrobce a pravidelně kontrolujte náplň.'
     };
-  }else if(/chlad|ochlaz|letni/.test(pageText)){
+  }else if(/chlad|ochlaz|letni|letní/.test(pageText)){
     fit = {
       label:'Letní výbava',
       title:'Víc pohodlí pro psa v horkých dnech',
@@ -107,7 +107,7 @@
       solves:'Zvyšuje komfort psa v teple a zpříjemňuje pobyt venku i doma.',
       use:'Používejte hlavně při vyšších teplotách a po aktivitě.'
     };
-  }else if(/obojek|vodit|vycvik|stek|trener|postroj/.test(pageText)){
+  }else if(/obojek|vodit|vodít|vycvik|výcvik|stek|štěk|trener|trenér|postroj/.test(pageText)){
     fit = {
       label:'Venčení',
       title:'Víc kontroly a jistoty při venčení',
@@ -116,7 +116,7 @@
       solves:'Pomáhá při procházkách, tréninku nebo řešení chování.',
       use:'Vyberte správnou velikost a vždy myslete na pohodlí psa.'
     };
-  }else if(/hrack|kong|wobbler|ring|mic/.test(pageText)){
+  }else if(/hrack|hračk|kong|wobbler|ring|mic|míč/.test(pageText)){
     fit = {
       label:'Zábava',
       title:'Zábava, pohyb a chytré zabavení',
