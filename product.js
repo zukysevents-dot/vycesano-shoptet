@@ -132,7 +132,7 @@
 
       '<div class="vz-px__trust">'+
         '<span><i>✓</i>Odeslání do 24 h</span>'+
-        '<span><i>✓</i>Doprava zdarma od 999 Kč</span>'+
+        '<span><i>✓</i>Doprava zdarma od 1499 Kč</span>'+
         '<span><i>✓</i>Vrácení do 14 dnů</span>'+
       '</div>'+
 
