@@ -1,5 +1,8 @@
 (function(){
-  if(document.getElementById('vz-custom-header')) return;
+  var oldHeader = document.getElementById('vz-custom-header');
+  if(oldHeader && oldHeader.parentNode){
+    oldHeader.parentNode.removeChild(oldHeader);
+  }
 
   var header =
     '<div id="vz-custom-header">'+
@@ -64,4 +67,24 @@
       link.setAttribute('aria-current','page');
     }
   });
+
+  function cleanupOldHeaderText(){
+    document.querySelectorAll('body *').forEach(function(el){
+      if(el.children.length) return;
+
+      if(el.textContent){
+        el.textContent = el.textContent
+          .replace('🎁 10 % na první objednávku: CHLUPY10', '🚚 Doprava zdarma od 1499 Kč')
+          .replace('10 % na první objednávku: CHLUPY10', 'Doprava zdarma od 1499 Kč')
+          .replace('CHLUPY10', '')
+          .replace('Doprava zdarma od 999 Kč', 'Doprava zdarma od 1499 Kč')
+          .replace('Doprava zdarma od 999 Kč.', 'Doprava zdarma od 1499 Kč.');
+      }
+    });
+  }
+
+  cleanupOldHeaderText();
+  setTimeout(cleanupOldHeaderText, 500);
+  setTimeout(cleanupOldHeaderText, 1500);
+  setTimeout(cleanupOldHeaderText, 3000);
 })();
