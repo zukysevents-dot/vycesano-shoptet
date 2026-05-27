@@ -9,6 +9,44 @@
     if(el && el.parentNode) el.parentNode.removeChild(el);
   }
 
+  function normalizeText(value){
+    return (value || '')
+      .toString()
+      .replace(/\s+/g, ' ')
+      .trim()
+      .toLowerCase();
+  }
+
+  function isProtiLinaniPage(){
+    return window.location.pathname.replace(/\/+$/, '') === '/proti-linani';
+  }
+
+  function hideProtiLinaniBestsellers(){
+    if(!isProtiLinaniPage() || !document.body) return;
+
+    var headings = Array.prototype.slice.call(document.querySelectorAll('h1,h2,h3,h4'));
+    var bestHeading = null;
+    var stopHeading = null;
+
+    headings.forEach(function(heading){
+      var text = normalizeText(heading.textContent);
+      if(!bestHeading && text === 'nejprodávanější') bestHeading = heading;
+      if(!stopHeading && (text === 'řazení produktů' || text === 'razení produktů' || text === 'výpis produktů')) stopHeading = heading;
+    });
+
+    if(!bestHeading) return;
+
+    var node = bestHeading;
+    var safetyCounter = 0;
+
+    while(node && node !== stopHeading && safetyCounter < 60){
+      var next = node.nextElementSibling;
+      removeNode(node);
+      node = next;
+      safetyCounter += 1;
+    }
+  }
+
   function cleanupLegacyTexts(root){
     root = root || document.body;
     if(!root) return;
@@ -50,6 +88,7 @@
     if(!document.body) return;
 
     cleanupLegacyTexts(document.body);
+    hideProtiLinaniBestsellers();
     removeNode(document.getElementById('vz-custom-header'));
 
     var header =
@@ -91,16 +130,19 @@
     });
 
     cleanupLegacyTexts(document.body);
+    hideProtiLinaniBestsellers();
   }
 
   function scheduleCleanup(){
     cleanupLegacyTexts(document.body);
-    setTimeout(function(){ cleanupLegacyTexts(document.body); }, 250);
-    setTimeout(function(){ cleanupLegacyTexts(document.body); }, 1200);
+    hideProtiLinaniBestsellers();
+    setTimeout(function(){ cleanupLegacyTexts(document.body); hideProtiLinaniBestsellers(); }, 250);
+    setTimeout(function(){ cleanupLegacyTexts(document.body); hideProtiLinaniBestsellers(); }, 1200);
 
     if(window.MutationObserver && document.body){
       var observer = new MutationObserver(function(){
         cleanupLegacyTexts(document.body);
+        hideProtiLinaniBestsellers();
       });
       observer.observe(document.body, {childList:true, subtree:true, characterData:true});
       setTimeout(function(){ observer.disconnect(); }, 6000);
