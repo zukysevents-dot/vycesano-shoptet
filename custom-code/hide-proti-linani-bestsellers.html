@@ -1,0 +1,59 @@
+<!--
+Vyčesáno.cz / Shoptet custom code
+Účel: Skrýt blok "Nejprodávanější" pouze v kategorii /proti-linani/.
+Vložte do Shoptet administrace: Vzhled a obsah → Editor → HTML kódy → Zápatí / před </body>.
+-->
+<script>
+(function () {
+  function normalizeText(value) {
+    return (value || "")
+      .replace(/\s+/g, " ")
+      .trim()
+      .toLowerCase();
+  }
+
+  function isProtiLinaniPage() {
+    return window.location.pathname.replace(/\/+$/, "") === "/proti-linani";
+  }
+
+  function hideBestsellerBlock() {
+    if (!isProtiLinaniPage()) return;
+
+    var headings = Array.prototype.slice.call(document.querySelectorAll("h1, h2, h3, h4"));
+    var heading = headings.find(function (item) {
+      return normalizeText(item.textContent) === "nejprodávanější";
+    });
+
+    if (!heading) return;
+
+    var block = heading.closest("section, .products, .products-block, .content-inner, .category-perex, .homepage-group, .p-detail, .box, .box-bg-default");
+
+    // Pokud Shoptet nedá bloku jasný wrapper, skryje nadpis a nejbližší produktový seznam za ním.
+    if (!block || block === document.body || block.contains(document.querySelector("#products"))) {
+      heading.style.display = "none";
+
+      var node = heading.nextElementSibling;
+      var safetyCounter = 0;
+
+      while (node && safetyCounter < 8) {
+        var text = normalizeText(node.textContent);
+        var isSortingOrProductList = text.indexOf("řazení produktů") !== -1 || text.indexOf("výpis produktů") !== -1;
+        if (isSortingOrProductList) break;
+
+        var next = node.nextElementSibling;
+        node.style.display = "none";
+        node = next;
+        safetyCounter += 1;
+      }
+    } else {
+      block.style.display = "none";
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", hideBestsellerBlock);
+  } else {
+    hideBestsellerBlock();
+  }
+})();
+</script>
