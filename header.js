@@ -21,22 +21,26 @@
     return window.location.pathname.replace(/\/+$/, '') === '/proti-linani';
   }
 
-  function hideProtiLinaniBestsellers(){
+  function isPromoProductsHeading(text){
+    return text === 'nejprodávanější' || text === 'nejprodavanejsi' || text === 'doporučujeme' || text === 'doporucujeme';
+  }
+
+  function hideProtiLinaniPromoProducts(){
     if(!isProtiLinaniPage() || !document.body) return;
 
     var headings = Array.prototype.slice.call(document.querySelectorAll('h1,h2,h3,h4'));
-    var bestHeading = null;
+    var promoHeading = null;
     var stopHeading = null;
 
     headings.forEach(function(heading){
       var text = normalizeText(heading.textContent);
-      if(!bestHeading && text === 'nejprodávanější') bestHeading = heading;
+      if(!promoHeading && isPromoProductsHeading(text)) promoHeading = heading;
       if(!stopHeading && (text === 'řazení produktů' || text === 'razení produktů' || text === 'výpis produktů')) stopHeading = heading;
     });
 
-    if(!bestHeading) return;
+    if(!promoHeading) return;
 
-    var node = bestHeading;
+    var node = promoHeading;
     var safetyCounter = 0;
 
     while(node && node !== stopHeading && safetyCounter < 60){
@@ -60,6 +64,9 @@
       var original = value;
       value = value.split(OLD_SHIPPING + '.').join(NEW_SHIPPING + '.');
       value = value.split(OLD_SHIPPING).join(NEW_SHIPPING);
+      value = value.split('BESTSELLERY').join('DOPORUČUJEME');
+      value = value.split('Bestsellery').join('Doporučujeme');
+      value = value.split('bestsellery').join('doporučujeme');
 
       var blocked = [
         GIFT + ' ' + '10' + ' % na ' + FIRST_ORDER + ': ' + COUPON,
@@ -88,7 +95,7 @@
     if(!document.body) return;
 
     cleanupLegacyTexts(document.body);
-    hideProtiLinaniBestsellers();
+    hideProtiLinaniPromoProducts();
     removeNode(document.getElementById('vz-custom-header'));
 
     var header =
@@ -110,7 +117,7 @@
             '<a href="/pro-psy/">🐶 PRO PSY</a>'+
             '<a href="/pro-kocky/">🐱 PRO KOČKY</a>'+
             '<a href="/proti-linani/" class="key">🧴 PROTI LÍNÁNÍ</a>'+
-            '<a href="/vyhledavani/?string=kart%C3%A1%C4%8D" class="toi">🪮 KARTÁČE</a>'+
+            '<a href="/doporucujeme/" class="toi">⭐ DOPORUČUJEME</a>'+
             '<a href="/skrabadla/" class="cat">🪵 ŠKRABADLA</a>'+
             '<a href="/fontanky/" class="wat">💧 FONTÁNKY</a>'+
             '<a href="/letni-kolekce/" class="hot">☀️ LETNÍ KOLEKCE</a>'+
@@ -130,19 +137,19 @@
     });
 
     cleanupLegacyTexts(document.body);
-    hideProtiLinaniBestsellers();
+    hideProtiLinaniPromoProducts();
   }
 
   function scheduleCleanup(){
     cleanupLegacyTexts(document.body);
-    hideProtiLinaniBestsellers();
-    setTimeout(function(){ cleanupLegacyTexts(document.body); hideProtiLinaniBestsellers(); }, 250);
-    setTimeout(function(){ cleanupLegacyTexts(document.body); hideProtiLinaniBestsellers(); }, 1200);
+    hideProtiLinaniPromoProducts();
+    setTimeout(function(){ cleanupLegacyTexts(document.body); hideProtiLinaniPromoProducts(); }, 250);
+    setTimeout(function(){ cleanupLegacyTexts(document.body); hideProtiLinaniPromoProducts(); }, 1200);
 
     if(window.MutationObserver && document.body){
       var observer = new MutationObserver(function(){
         cleanupLegacyTexts(document.body);
-        hideProtiLinaniBestsellers();
+        hideProtiLinaniPromoProducts();
       });
       observer.observe(document.body, {childList:true, subtree:true, characterData:true});
       setTimeout(function(){ observer.disconnect(); }, 6000);
