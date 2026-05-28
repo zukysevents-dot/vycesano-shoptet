@@ -1,0 +1,76 @@
+/* Visible text-logo fallback for homepage brand cards */
+.vz-brand-hero__logo:before{
+  background-image:none!important;
+  height:auto!important;
+  min-height:46px!important;
+  margin-bottom:4px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  font-weight:950!important;
+  line-height:.95!important;
+  letter-spacing:-.03em!important;
+  text-align:center!important;
+  white-space:pre-line!important;
+}
+
+.vz-brand-hero__logo strong{
+  display:none!important;
+}
+
+.vz-brand-hero__logo--bamboo:before{
+  content:"bamboo\A groom"!important;
+  color:#111!important;
+  font-size:34px!important;
+  font-weight:500!important;
+  font-family:Arial, Helvetica, sans-serif!important;
+}
+
+.vz-brand-hero__logo--bamboo:after{
+  content:"";
+  position:absolute;
+  left:50%;
+  top:58px;
+  width:74px;
+  height:6px;
+  border-radius:999px;
+  background:#79b84a;
+  transform:translateX(-50%);
+}
+
+.vz-brand-hero__logo--flamingo:before{
+  content:"● FLAMINGO"!important;
+  color:#111!important;
+  font-size:27px!important;
+  font-family:Arial, Helvetica, sans-serif!important;
+  letter-spacing:-.02em!important;
+}
+
+.vz-brand-hero__logo--flamingo:before::first-letter{
+  color:#e51f35!important;
+}
+
+.vz-brand-hero__logo--lotte:before{
+  content:"Designed\A by Lotte"!important;
+  color:#111!important;
+  font-size:31px!important;
+  font-family:Georgia, 'Times New Roman', serif!important;
+  font-weight:700!important;
+}
+
+.vz-brand-hero__logo{
+  position:relative!important;
+  padding-top:18px!important;
+  padding-bottom:16px!important;
+}
+
+.vz-brand-hero__logo span{
+  margin-top:3px!important;
+}
+
+@media(max-width:768px){
+  .vz-brand-hero__logo--bamboo:before{font-size:28px!important;}
+  .vz-brand-hero__logo--flamingo:before{font-size:23px!important;}
+  .vz-brand-hero__logo--lotte:before{font-size:27px!important;}
+  .vz-brand-hero__logo--bamboo:after{top:52px!important;}
+}
