@@ -250,6 +250,25 @@
   margin-top:26px!important;
 }
 
+/* Larger previews for small Tickless photos in product cards. */
+.products-block .image{
+  overflow:hidden!important;
+}
+
+.products-block .image img[alt*="tickless" i]:not([alt*="ecopet" i]),
+.products-block .image img[src*="tickless" i]:not([alt*="ecopet" i]){
+  transform:scale(1.14)!important;
+  transform-origin:center center!important;
+  transition:transform .18s ease!important;
+}
+
+.products-block .product:hover .image img[alt*="tickless" i]:not([alt*="ecopet" i]),
+.products-block .product:hover .image img[src*="tickless" i]:not([alt*="ecopet" i]),
+.products-block .p:hover .image img[alt*="tickless" i]:not([alt*="ecopet" i]),
+.products-block .p:hover .image img[src*="tickless" i]:not([alt*="ecopet" i]){
+  transform:scale(1.17)!important;
+}
+
 @media(max-width:768px){
   .p-detail .p-info-wrapper{
     padding:16px!important;
@@ -300,5 +319,10 @@
 
   .vz-px__help a{
     width:max-content;
+  }
+
+  .products-block .image img[alt*="tickless" i]:not([alt*="ecopet" i]),
+  .products-block .image img[src*="tickless" i]:not([alt*="ecopet" i]){
+    transform:scale(1.1)!important;
   }
 }
