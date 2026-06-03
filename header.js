@@ -106,6 +106,14 @@
           '<div>↩️ Vrácení do 14 dnů</div>'+
           '<div>🐶 Pro psy a kočky skladem</div>'+
           '<div>📞 <a href="tel:774318382">774 318 382</a></div>'+
+          '<div class="vz-social-links" style="display:flex;align-items:center;justify-content:center;gap:10px;">'+
+            '<a href="https://www.facebook.com/profile.php?id=61589413723529" target="_blank" rel="noopener noreferrer" aria-label="Vyčesáno.cz Facebook" style="display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:999px;background:rgba(255,255,255,.18);color:#fff;text-decoration:none;line-height:1;">'+
+              '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:block;width:15px;height:15px;"><path fill="currentColor" d="M22 12.06C22 6.48 17.52 2 11.94 2S2 6.48 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.84c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.9h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94Z"/></svg>'+
+            '</a>'+
+            '<a href="https://www.instagram.com/vycesano.cz/" target="_blank" rel="noopener noreferrer" aria-label="Vyčesáno.cz Instagram" style="display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:999px;background:rgba(255,255,255,.18);color:#fff;text-decoration:none;line-height:1;">'+
+              '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false" style="display:block;width:15px;height:15px;"><path fill="currentColor" d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm-.2 2A3.6 3.6 0 0 0 4 7.6v8.8A3.6 3.6 0 0 0 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6A3.6 3.6 0 0 0 16.4 4H7.6Zm9.65 1.55a1.2 1.2 0 1 1 0 2.4 1.2 1.2 0 0 1 0-2.4ZM12 7.3a4.7 4.7 0 1 1 0 9.4 4.7 4.7 0 0 1 0-9.4Zm0 2a2.7 2.7 0 1 0 0 5.4 2.7 2.7 0 0 0 0-5.4Z"/></svg>'+
+            '</a>'+
+          '</div>'+
         '</div></div>'+
         '<div class="vz-header"><div class="vz-header__box">'+
           '<div class="vz-header__main">'+
