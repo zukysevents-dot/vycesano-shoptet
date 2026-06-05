@@ -16,6 +16,26 @@
     var s=document.createElement('style');s.id='vz-header-featured-style';s.textContent=css;document.head.appendChild(s);
   }
 
+  function insertHeroBrandSpotlightStyle(){
+    if(document.getElementById('vz-brand-spotlight-style'))return;
+    var css='.vz-brand-hero__spotlight-logos{position:absolute!important;top:76px!important;right:34px!important;width:238px!important;display:grid!important;grid-template-columns:1fr!important;gap:12px!important;z-index:4!important}.vz-brand-hero__spotlight-logo{min-height:72px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:9px 15px!important;overflow:hidden!important;border:1px solid rgba(33,91,64,.14)!important;border-radius:16px!important;background:rgba(255,255,255,.94)!important;box-shadow:0 12px 28px rgba(24,55,40,.13)!important;text-decoration:none!important;transition:transform .18s ease,box-shadow .18s ease!important}.vz-brand-hero__spotlight-logo:hover{transform:translateY(-2px)!important;box-shadow:0 16px 34px rgba(24,55,40,.2)!important}.vz-brand-hero__spotlight-logo img{display:block!important;width:100%!important;max-width:196px!important;height:50px!important;object-fit:contain!important}.vz-brand-hero__spotlight-logo--petsafe{background:#123f76!important;border-color:#123f76!important}.vz-brand-hero__spotlight-logo--petsafe img{max-width:174px!important;height:54px!important}.vz-brand-hero__spotlight-logo--animology{background:#191614!important;border-color:#191614!important}.vz-brand-hero__spotlight-logo--animology img{max-width:190px!important;height:50px!important}@media(max-width:1120px){.vz-brand-hero__spotlight-logos{position:relative!important;top:auto!important;right:auto!important;width:auto!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin:20px 0 0!important}.vz-brand-hero__spotlight-logo{min-height:66px!important;padding:8px 12px!important}.vz-brand-hero__spotlight-logo img{max-width:180px!important;height:46px!important}.vz-brand-hero__spotlight-logo--petsafe img{max-width:154px!important;height:48px!important}.vz-brand-hero__spotlight-logo--animology img{max-width:170px!important;height:46px!important}}@media(max-width:600px){.vz-brand-hero__spotlight-logos{grid-template-columns:1fr!important;gap:8px!important;margin-top:16px!important}.vz-brand-hero__spotlight-logo{min-height:58px!important}.vz-brand-hero__spotlight-logo img,.vz-brand-hero__spotlight-logo--petsafe img,.vz-brand-hero__spotlight-logo--animology img{height:42px!important;max-width:180px!important}}';
+    var s=document.createElement('style');s.id='vz-brand-spotlight-style';s.textContent=css;document.head.appendChild(s);
+  }
+
+  function insertHeroBrandSpotlight(){
+    var hero=document.querySelector('.vz-brand-hero');
+    if(!hero||document.getElementById('vz-brand-spotlight-logos'))return;
+    insertHeroBrandSpotlightStyle();
+    var logos=
+      '<div id="vz-brand-spotlight-logos" class="vz-brand-hero__spotlight-logos" aria-label="Další oblíbené značky">'+
+        '<a class="vz-brand-hero__spotlight-logo" href="/vyhledavani/?string=Beeztees" aria-label="Zobrazit produkty Beeztees"><img src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/assets/brands/beeztees.jpg?v=20260605" alt="Beeztees" loading="lazy"></a>'+
+        '<a class="vz-brand-hero__spotlight-logo vz-brand-hero__spotlight-logo--petsafe" href="/vyhledavani/?string=PetSafe" aria-label="Zobrazit produkty PetSafe"><img src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/assets/brands/petsafe.jpg?v=20260605" alt="PetSafe" loading="lazy"></a>'+
+        '<a class="vz-brand-hero__spotlight-logo vz-brand-hero__spotlight-logo--animology" href="/vyhledavani/?string=Animology" aria-label="Zobrazit produkty Animology"><img src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/assets/brands/animology.jpg?v=20260605" alt="Animology" loading="lazy"></a>'+
+      '</div>';
+    var currentLogos=hero.querySelector('.vz-brand-hero__logos');
+    if(currentLogos)currentLogos.insertAdjacentHTML('beforebegin',logos);else hero.insertAdjacentHTML('beforeend',logos);
+  }
+
   function hideProtiLinaniPromoProducts(){
     if(!isProtiLinaniPage()||!document.body)return;
     var hs=[].slice.call(document.querySelectorAll('h1,h2,h3,h4'));
@@ -72,12 +92,12 @@
   }
 
   function scheduleCleanup(){
-    cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();
-    setTimeout(function(){cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts()},250);
-    setTimeout(function(){cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts()},1200);
-    if(window.MutationObserver&&document.body){var ob=new MutationObserver(function(){cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts()});ob.observe(document.body,{childList:true,subtree:true,characterData:true});setTimeout(function(){ob.disconnect()},6000)}
+    cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();insertHeroBrandSpotlight();
+    setTimeout(function(){cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();insertHeroBrandSpotlight()},250);
+    setTimeout(function(){cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();insertHeroBrandSpotlight()},1200);
+    if(window.MutationObserver&&document.body){var ob=new MutationObserver(function(){cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();insertHeroBrandSpotlight()});ob.observe(document.body,{childList:true,subtree:true,characterData:true});setTimeout(function(){ob.disconnect()},6000)}
   }
-  function init(){insertHeader();scheduleCleanup()}
+  function init(){insertHeroBrandSpotlightStyle();insertHeader();scheduleCleanup()}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
   window.addEventListener('load',scheduleCleanup);
 })();
