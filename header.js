@@ -61,7 +61,7 @@
           '<nav class="vz-menu vz-menu-featured" aria-label="Speciální kategorie">'+
             '<a href="/lekarna-pro-mazlicky/" class="pharm"><span>💚</span><div><b>LÉKÁRNA</b><small>PRO MAZLÍČKY</small></div></a>'+
             '<a href="/chytre-vychytavky/" class="smart"><span>💡</span><div><b>CHYTRÉ</b><small>VYCHYTÁVKY</small></div></a>'+
-            '<a href="/cestovani/" class="travel"><span>🚗</span><div><b>CESTOVÁNÍ</b><small>PRO MAZLÍČKY</small></div></a>'+
+            '<a href="/cestovani/" class="travel"><span>🚗</span><div><b>CESTOVÁNÍ</b><small>JIŽ BRZY</small></div></a>'+
           '</nav>'+
         '</div></div>'+
       '</div>';
