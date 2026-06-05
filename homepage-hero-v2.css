@@ -142,6 +142,65 @@
   line-height:1;
 }
 
+.vz-brand-hero__spotlight-logos{
+  position:absolute!important;
+  top:72px!important;
+  right:32px!important;
+  width:238px!important;
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:12px!important;
+  z-index:4!important;
+}
+
+.vz-brand-hero__spotlight-logo{
+  min-height:72px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  padding:9px 15px!important;
+  overflow:hidden!important;
+  border:1px solid rgba(33,91,64,.14)!important;
+  border-radius:16px!important;
+  background:rgba(255,255,255,.95)!important;
+  box-shadow:0 12px 28px rgba(24,55,40,.13)!important;
+  text-decoration:none!important;
+  transition:transform .18s ease,box-shadow .18s ease!important;
+}
+
+.vz-brand-hero__spotlight-logo:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:0 16px 34px rgba(24,55,40,.20)!important;
+}
+
+.vz-brand-hero__spotlight-logo img{
+  display:block!important;
+  width:100%!important;
+  max-width:196px!important;
+  height:50px!important;
+  object-fit:contain!important;
+}
+
+.vz-brand-hero__spotlight-logo--petsafe{
+  background:#123f76!important;
+  border-color:#123f76!important;
+}
+
+.vz-brand-hero__spotlight-logo--petsafe img{
+  max-width:174px!important;
+  height:54px!important;
+}
+
+.vz-brand-hero__spotlight-logo--animology{
+  background:#191614!important;
+  border-color:#191614!important;
+}
+
+.vz-brand-hero__spotlight-logo--animology img{
+  max-width:190px!important;
+  height:50px!important;
+}
+
 .vz-brand-hero__logos{
   position:relative!important;
   z-index:3!important;
@@ -224,6 +283,35 @@
     opacity:.15!important;
   }
 
+  .vz-brand-hero__spotlight-logos{
+    position:relative!important;
+    top:auto!important;
+    right:auto!important;
+    width:auto!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:10px!important;
+  }
+
+  .vz-brand-hero__spotlight-logo{
+    min-height:66px!important;
+    padding:8px 12px!important;
+  }
+
+  .vz-brand-hero__spotlight-logo img{
+    height:46px!important;
+    max-width:180px!important;
+  }
+
+  .vz-brand-hero__spotlight-logo--petsafe img{
+    height:48px!important;
+    max-width:154px!important;
+  }
+
+  .vz-brand-hero__spotlight-logo--animology img{
+    height:46px!important;
+    max-width:170px!important;
+  }
+
   .vz-brand-hero__logos{
     grid-column:auto!important;
   }
@@ -245,9 +333,21 @@
     font-size:16px!important;
   }
 
+  .vz-brand-hero__spotlight-logos,
   .vz-brand-hero__logos{
     grid-template-columns:1fr!important;
     gap:10px!important;
+  }
+
+  .vz-brand-hero__spotlight-logo{
+    min-height:58px!important;
+  }
+
+  .vz-brand-hero__spotlight-logo img,
+  .vz-brand-hero__spotlight-logo--petsafe img,
+  .vz-brand-hero__spotlight-logo--animology img{
+    height:42px!important;
+    max-width:180px!important;
   }
 
   .vz-brand-hero__logo{
