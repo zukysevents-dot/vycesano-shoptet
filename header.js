@@ -10,6 +10,12 @@
   function isProtiLinaniPage(){return window.location.pathname.replace(/\/+$/,'')==='/proti-linani'}
   function isPromoProductsHeading(t){return t==='nejprodávanější'||t==='nejprodavanejsi'||t==='doporučujeme'||t==='doporucujeme'}
 
+  function insertHeaderStyle(){
+    if(document.getElementById('vz-header-featured-style'))return;
+    var css='.vz-social-links{display:flex;align-items:center;justify-content:center;gap:10px}.vz-social-links a{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:999px;background:rgba(255,255,255,.18);color:#fff!important;text-decoration:none!important;font-weight:950;line-height:1}.vz-menu-main{grid-template-columns:repeat(6,minmax(0,1fr))!important}.vz-menu-featured{grid-template-columns:repeat(3,minmax(0,1fr))!important;margin-top:9px!important;background:rgba(234,223,207,.72)!important}.vz-menu-featured a{min-height:56px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;padding:8px 12px!important;line-height:1!important}.vz-menu-featured a span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;min-width:30px;border-radius:999px;background:#fff;box-shadow:0 6px 14px rgba(0,0,0,.1);font-size:16px}.vz-menu-featured a b,.vz-menu-featured a small{display:block}.vz-menu-featured a b{font-size:13px;font-weight:950;letter-spacing:.03em}.vz-menu-featured a small{font-size:10.5px;font-weight:900;opacity:.9;margin-top:2px}.vz-menu-featured .pharm{background:linear-gradient(135deg,#e4f6e8,#c5e6cf)!important;color:#1f5a3d!important;border-color:#78b889!important}.vz-menu-featured .smart{background:linear-gradient(135deg,#fff1c8,#f2cd6d)!important;color:#5c3c08!important;border-color:#d6a34a!important}.vz-menu-featured .travel{background:linear-gradient(135deg,#e6eefc,#cbdcf7)!important;color:#25456f!important;border-color:#8aa9d8!important}.vz-menu-featured a:hover,.vz-menu-featured a.is-active{background:var(--vz-g)!important;color:#fff!important;border-color:var(--vz-g)!important}@media(max-width:1100px){.vz-menu-main{grid-template-columns:repeat(3,1fr)!important}.vz-menu-featured{grid-template-columns:1fr!important}.vz-menu-featured a{min-height:48px!important}}@media(max-width:768px){.vz-menu-main{grid-template-columns:1fr 1fr!important}.vz-menu-featured{grid-template-columns:1fr!important}.vz-menu-featured a{min-height:46px!important}.vz-menu-featured a b{font-size:12px}.vz-menu-featured a small{font-size:10px}}';
+    var s=document.createElement('style');s.id='vz-header-featured-style';s.textContent=css;document.head.appendChild(s);
+  }
+
   function hideProtiLinaniPromoProducts(){
     if(!isProtiLinaniPage()||!document.body)return;
     var hs=[].slice.call(document.querySelectorAll('h1,h2,h3,h4'));
@@ -36,7 +42,7 @@
 
   function insertHeader(){
     if(!document.body)return;
-    cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();removeNode(document.getElementById('vz-custom-header'));
+    insertHeaderStyle();cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();removeNode(document.getElementById('vz-custom-header'));
     var header=
       '<div id="vz-custom-header">'+
         '<div class="vz-top"><div class="vz-top__inner">'+
@@ -53,9 +59,9 @@
             '<a href="/pro-psy/">🐶 PRO PSY</a><a href="/pro-kocky/">🐱 PRO KOČKY</a><a href="/proti-linani/" class="key">🧴 PROTI LÍNÁNÍ</a><a href="/doporucujeme/" class="toi">⭐ DOPORUČUJEME</a><a href="/skrabadla/" class="cat">🪵 ŠKRABADLA</a><a href="/letni-kolekce/" class="hot">☀️ LETNÍ KOLEKCE</a>'+
           '</nav>'+
           '<nav class="vz-menu vz-menu-featured" aria-label="Speciální kategorie">'+
-            '<a href="/lekarna-pro-mazlicky/" class="pharm"><span>💚</span><b>LÉKÁRNA</b><small>PRO MAZLÍČKY</small></a>'+
-            '<a href="/chytre-vychytavky/" class="smart"><span>💡</span><b>CHYTRÉ</b><small>VYCHYTÁVKY</small></a>'+
-            '<a href="/cestovani/" class="travel"><span>🚗</span><b>CESTOVÁNÍ</b><small>JIŽ BRZY</small></a>'+
+            '<a href="/lekarna-pro-mazlicky/" class="pharm"><span>💚</span><div><b>LÉKÁRNA</b><small>PRO MAZLÍČKY</small></div></a>'+
+            '<a href="/chytre-vychytavky/" class="smart"><span>💡</span><div><b>CHYTRÉ</b><small>VYCHYTÁVKY</small></div></a>'+
+            '<a href="/cestovani/" class="travel"><span>🚗</span><div><b>CESTOVÁNÍ</b><small>PRO MAZLÍČKY</small></div></a>'+
           '</nav>'+
         '</div></div>'+
       '</div>';
