@@ -5,44 +5,64 @@
   width:272px!important;
   gap:14px!important;
   z-index:10!important;
+  overflow:visible!important;
 }
 
 .vz-brand-hero__spotlight-logo{
   height:82px!important;
   min-height:82px!important;
-  padding:0!important;
+  padding:10px 16px!important;
+  overflow:hidden!important;
+  background-image:none!important;
   background-repeat:no-repeat!important;
   background-position:center!important;
+  background-size:contain!important;
   box-shadow:0 16px 36px rgba(24,55,40,.16)!important;
 }
 
 .vz-brand-hero__spotlight-logo img{
-  opacity:0!important;
-  width:100%!important;
-  height:100%!important;
+  opacity:1!important;
+  display:block!important;
+  width:auto!important;
+  height:auto!important;
+  max-width:100%!important;
+  max-height:58px!important;
+  object-fit:contain!important;
+  margin:auto!important;
+  transform:none!important;
 }
 
 /* Beeztees */
 .vz-brand-hero__spotlight-logo:not(.vz-brand-hero__spotlight-logo--petsafe):not(.vz-brand-hero__spotlight-logo--animology){
   background-color:#fff!important;
-  background-size:86% auto!important;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='170' viewBox='0 0 560 170'%3E%3Crect width='560' height='170' fill='white'/%3E%3Ctext x='28' y='103' font-family='Arial,Helvetica,sans-serif' font-size='76' font-weight='800' fill='%233f2718'%3Ebeeztees%3C/text%3E%3Ccircle cx='472' cy='78' r='43' fill='%23f6f2e8' stroke='%23d8d0bd' stroke-width='3'/%3E%3Cpath d='M455 47c23 3 38 18 41 40-18-11-34-18-53-18z' fill='%234f8fba'/%3E%3Cpath d='M452 101c-18-7-29-21-31-40 18 7 33 17 47 32z' fill='%236c7b43'/%3E%3Cpath d='M493 96c-9 17-24 25-44 24 8-17 20-29 37-37z' fill='%237b6049'/%3E%3Cpath d='M477 42c14 1 25 8 31 20-13 2-25 0-36-8z' fill='%23e8a12a'/%3E%3C/svg%3E")!important;
+  border-color:rgba(33,91,64,.14)!important;
+}
+
+.vz-brand-hero__spotlight-logo:not(.vz-brand-hero__spotlight-logo--petsafe):not(.vz-brand-hero__spotlight-logo--animology) img{
+  max-width:92%!important;
+  max-height:48px!important;
 }
 
 /* PetSafe */
 .vz-brand-hero__spotlight-logo--petsafe{
   background-color:#123f76!important;
   border-color:#123f76!important;
-  background-size:82% auto!important;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='170' viewBox='0 0 560 170'%3E%3Crect x='22' y='30' width='516' height='104' rx='30' fill='%23ffdf00'/%3E%3Ctext x='68' y='102' font-family='Arial,Helvetica,sans-serif' font-size='76' font-weight='900' fill='%230b4380'%3EPetSafe%3C/text%3E%3Cpath d='M430 51l64 35-18 28h-46z' fill='%230b4380'/%3E%3Ccircle cx='365' cy='55' r='7' fill='%230b4380'/%3E%3C/svg%3E")!important;
+}
+
+.vz-brand-hero__spotlight-logo--petsafe img{
+  max-width:88%!important;
+  max-height:54px!important;
 }
 
 /* Animology */
 .vz-brand-hero__spotlight-logo--animology{
   background-color:#191614!important;
   border-color:#191614!important;
-  background-size:86% auto!important;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='560' height='170' viewBox='0 0 560 170'%3E%3Crect width='560' height='170' fill='%23191614'/%3E%3Ctext x='43' y='82' font-family='Arial Black,Arial,Helvetica,sans-serif' font-size='74' font-weight='900' fill='white'%3Eanimology%3C/text%3E%3Ctext x='46' y='126' font-family='Arial,Helvetica,sans-serif' font-size='41' font-weight='300' fill='white'%3Epet care excellence%3C/text%3E%3Ctext x='493' y='37' font-family='Arial,Helvetica,sans-serif' font-size='25' fill='white'%3E%C2%AE%3C/text%3E%3C/svg%3E")!important;
+}
+
+.vz-brand-hero__spotlight-logo--animology img{
+  max-width:90%!important;
+  max-height:54px!important;
 }
 
 @media(max-width:1120px){
@@ -54,9 +74,11 @@
     grid-template-columns:repeat(3,minmax(0,1fr))!important;
   }
   .vz-brand-hero__spotlight-logo{height:72px!important;min-height:72px!important;}
+  .vz-brand-hero__spotlight-logo img{max-height:48px!important;}
 }
 
 @media(max-width:600px){
   .vz-brand-hero__spotlight-logos{grid-template-columns:1fr!important;}
   .vz-brand-hero__spotlight-logo{height:66px!important;min-height:66px!important;}
+  .vz-brand-hero__spotlight-logo img{max-height:44px!important;}
 }
