@@ -1,0 +1,82 @@
+/* ============================================================
+   Vyčesáno.cz – design tokens (jeden zdroj pravdy)
+   Evoluce stávající zelené identity, beze změny brandu.
+   Načítá se jako první v shoptet-head-code.html.
+   ============================================================ */
+
+:root{
+  /* --- Zelená (primární brand) --- */
+  --vz-g:#215b40;          /* hlavní zelená (používá i header.js) */
+  --vz-g-600:#2d714f;
+  --vz-g-700:#1c4d35;
+  --vz-g-800:#173d2b;      /* tmavý text / nadpisy */
+  --vz-g-900:#103923;
+  --vz-g-100:#e4f3e8;      /* světlý zelený tint */
+  --vz-g-50:#edf6ef;
+
+  /* --- Zlatá (akcent) --- */
+  --vz-gold:#d6a34a;
+  --vz-gold-700:#bf8b2f;
+  --vz-gold-50:#fff8e8;
+
+  /* --- Akce / sleva --- */
+  --vz-sale:#cf3a2f;
+  --vz-sale-50:#fdeceb;
+
+  /* --- Neutrály a plochy --- */
+  --vz-ink:#173222;        /* základní text */
+  --vz-muted:#54665b;      /* sekundární text */
+  --vz-bg:#ffffff;
+  --vz-surface:#fbf8f1;    /* krémová plocha */
+  --vz-cream:#f8f4ec;
+  --vz-line:rgba(33,91,64,.12);
+  --vz-line-strong:rgba(33,91,64,.24);
+
+  /* --- Rádiusy --- */
+  --vz-r-sm:12px;
+  --vz-r:16px;
+  --vz-r-lg:22px;
+  --vz-r-xl:30px;
+  --vz-r-pill:999px;
+
+  /* --- Stíny --- */
+  --vz-shadow-sm:0 6px 16px rgba(25,45,35,.07);
+  --vz-shadow:0 14px 34px rgba(25,45,35,.09);
+  --vz-shadow-lg:0 26px 64px rgba(25,45,35,.12);
+
+  /* --- Přechody --- */
+  --vz-t:.18s ease;
+  --vz-t-smooth:.32s cubic-bezier(.4,0,.2,1);
+
+  /* --- Layout --- */
+  --vz-maxw:1540px;
+}
+
+/* --- Jemné globální vyladění (nenarušuje Shoptet layout) --- */
+body{
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+}
+
+::selection{
+  background:var(--vz-g);
+  color:#fff;
+}
+
+/* Přístupnost: viditelný focus pro klávesnici */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible{
+  outline:3px solid var(--vz-gold);
+  outline-offset:2px;
+  border-radius:6px;
+}
+
+/* Plynulé rolování (vypnuté pro uživatele preferující méně pohybu) */
+@media (prefers-reduced-motion:no-preference){
+  html{scroll-behavior:smooth;}
+}

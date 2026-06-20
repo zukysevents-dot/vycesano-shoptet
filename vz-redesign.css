@@ -1,0 +1,164 @@
+/* ============================================================
+   Vyčesáno.cz – redesign vrstva (načítá se jako POSLEDNÍ)
+   Profesionálnější, prodejnější vzhled v rámci zelené identity.
+   Staví na tokens.css. Nepřepisuje strukturu – jen rafinace.
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   1) ÚKLID / STABILIZACE
+   ------------------------------------------------------------ */
+
+/* Na titulce jsou 3 hero bloky (1 injektovaný JS + 2 duplicity
+   z admin obsahu). Necháme jen injektovaný, zbytek skryjeme. */
+.vz-brand-hero:not(#vz-homepage-hero-auto){
+  display:none!important;
+}
+
+/* Systémová Shoptet patička -> nenápadný, čistý právní proužek
+   (custom zelená .vz-footer zůstává hlavní patičkou). */
+#footer.footer{
+  background:var(--vz-surface)!important;
+  border-top:1px solid var(--vz-line)!important;
+  padding:12px 16px!important;
+  box-shadow:none!important;
+}
+#footer.footer .footer-bottom{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:8px 18px!important;
+  flex-wrap:wrap!important;
+  max-width:var(--vz-maxw)!important;
+  margin:0 auto!important;
+  font-size:12.5px!important;
+  color:var(--vz-muted)!important;
+}
+#footer.footer .footer-bottom a{
+  color:var(--vz-muted)!important;
+  opacity:.85!important;
+}
+#footer.footer .footer-bottom a:hover{
+  color:var(--vz-g)!important;
+  opacity:1!important;
+}
+
+/* ------------------------------------------------------------
+   2) PRODUKTOVÉ KARTY (nejprodávanější + výpisy kategorií)
+   Dosud bez custom stylu – největší prodejní zásah.
+   ------------------------------------------------------------ */
+
+.products-block .product{
+  height:100%!important;
+}
+
+.products-block .product .p{
+  display:flex!important;
+  flex-direction:column!important;
+  height:100%!important;
+  padding:14px!important;
+  background:var(--vz-bg)!important;
+  border:1px solid var(--vz-line)!important;
+  border-radius:var(--vz-r-lg)!important;
+  box-shadow:var(--vz-shadow-sm)!important;
+  transition:transform var(--vz-t),box-shadow var(--vz-t),border-color var(--vz-t)!important;
+}
+
+.products-block .product .p:hover{
+  transform:translateY(-4px)!important;
+  box-shadow:var(--vz-shadow)!important;
+  border-color:var(--vz-line-strong)!important;
+}
+
+/* Obrázek – konzistentní plocha, jemný zoom na hover */
+.products-block .product .image{
+  position:relative!important;
+  display:block!important;
+  border-radius:var(--vz-r)!important;
+  overflow:hidden!important;
+  background:#fff!important;
+}
+.products-block .product .image img{
+  transition:transform var(--vz-t-smooth)!important;
+}
+.products-block .product .p:hover .image img{
+  transform:scale(1.045)!important;
+}
+
+/* Název produktu */
+.products-block .product .name,
+.products-block .product .name a{
+  color:var(--vz-g-800)!important;
+  font-weight:800!important;
+  line-height:1.32!important;
+}
+.products-block .product .name a:hover{
+  color:var(--vz-g)!important;
+}
+
+/* Dostupnost (skladem) */
+.products-block .product .availability,
+.products-block .product .availability-label{
+  color:var(--vz-g-600)!important;
+  font-weight:800!important;
+}
+
+/* Cena – výrazná, čitelná */
+.products-block .product .price-final,
+.products-block .product .price.price-final{
+  color:var(--vz-g-900)!important;
+  font-weight:950!important;
+}
+.products-block .product .price-standard,
+.products-block .product del{
+  color:var(--vz-muted)!important;
+}
+
+/* Tlačítko Do košíku */
+.products-block .product .add-to-cart-button,
+.products-block .product .btn-cart{
+  border:0!important;
+  border-radius:var(--vz-r-sm)!important;
+  background:linear-gradient(135deg,var(--vz-g-600),var(--vz-g))!important;
+  color:#fff!important;
+  font-weight:900!important;
+  box-shadow:0 10px 22px rgba(33,91,64,.20)!important;
+  transition:filter var(--vz-t),transform var(--vz-t),box-shadow var(--vz-t)!important;
+}
+.products-block .product .add-to-cart-button:hover,
+.products-block .product .btn-cart:hover{
+  filter:brightness(.97)!important;
+  transform:translateY(-1px)!important;
+  box-shadow:0 14px 28px rgba(33,91,64,.26)!important;
+}
+
+/* Štítky (Akce / Tip / Novinka / sleva) – pilulky */
+.products-block .product .flag,
+.products-block .product .flags > *{
+  border-radius:var(--vz-r-pill)!important;
+  font-weight:900!important;
+  letter-spacing:.02em!important;
+  box-shadow:0 6px 14px rgba(25,45,35,.12)!important;
+}
+.products-block .product .flag-discount{
+  background:var(--vz-sale)!important;
+  color:#fff!important;
+}
+
+/* ------------------------------------------------------------
+   3) CUSTOM PATIČKA (.vz-footer) – jemné doladění
+   ------------------------------------------------------------ */
+.vz-footer a{
+  transition:color var(--vz-t),opacity var(--vz-t)!important;
+}
+.vz-footer a:hover{
+  opacity:1!important;
+  text-decoration:underline!important;
+  text-underline-offset:3px!important;
+}
+
+/* ------------------------------------------------------------
+   4) HERO – jemné vyladění (bez závislosti na 404 obrázku)
+   ------------------------------------------------------------ */
+#vz-homepage-hero-auto.vz-brand-hero{
+  margin-top:18px!important;
+}
