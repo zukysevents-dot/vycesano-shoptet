@@ -1,0 +1,115 @@
+<!--
+Vyčesáno.cz – kód do ZÁPATÍ (Shoptet administrace → Vzhled a obsah →
+Editor → HTML kód → Zápatí / před </body>)
+
+Obsahuje vlastní zelenou patičku (.vz-footer) a sekci „Co hledáte" (.vhg),
+která se injektuje na titulce. Redesign tyto prvky pouze vizuálně doladí
+přes vz-redesign.css (načítané v Záhlaví) – ZÁPATÍ ZŮSTÁVÁ BEZE ZMĚNY.
+Uloženo do repa jen jako zdroj pravdy / dokumentace.
+-->
+
+<style>
+.vz-footer{background:linear-gradient(180deg,#1b4632,#163827);margin-top:70px;padding:60px 20px 28px;color:#fff;border-radius:38px 38px 0 0}
+.vz-footer-wrap{max-width:1450px;margin:auto;display:grid;grid-template-columns:1.2fr 1fr 1fr 1fr;gap:50px}
+.vz-footer-logo{display:flex;align-items:center;gap:14px;margin-bottom:18px}
+.vz-footer-logo img{width:62px;height:62px;background:#fff;border-radius:18px;padding:8px}
+.vz-footer-logo div{font-size:36px;font-weight:700;line-height:1;color:#fff}
+.vz-footer-logo span{color:#d1a348}
+.vz-footer h4{font-size:18px;margin:0 0 18px;font-weight:800}
+.vz-footer-links,.vz-contact{display:flex;flex-direction:column;gap:12px}
+.vz-footer-links a,.vz-contact{color:rgba(255,255,255,.85);font-size:16px}
+.vz-footer-links a,.vz-contact a{text-decoration:none}
+.vz-contact a{color:#fff;font-weight:700}
+.vz-bottom{max-width:1450px;margin:50px auto 0;padding-top:22px;border-top:1px solid rgba(255,255,255,.1);text-align:center;font-size:14px;color:rgba(255,255,255,.65)}
+
+.vhg{max-width:1180px;margin:26px auto 34px;padding:26px;background:#fff;border:1px solid rgba(33,91,64,.12);border-radius:24px;box-shadow:0 18px 45px rgba(0,0,0,.07)}
+.vhg h2{margin:0 0 8px;font-size:30px;line-height:1.2;color:#215b40;text-align:center}
+.vhg p{margin:0 auto 22px;max-width:720px;font-size:17px;line-height:1.55;color:#4a514c;text-align:center}
+.vhg-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:22px}
+.vhg-card{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:17px 18px;background:#f7f3ec;border:1px solid rgba(33,91,64,.12);border-radius:16px;text-decoration:none!important;color:#215b40!important;font-size:16px;font-weight:800;transition:.2s}
+.vhg-card:hover{background:#215b40;color:#fff!important;transform:translateY(-2px);box-shadow:0 12px 24px rgba(33,91,64,.18)}
+.vhg-trust{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;padding-top:18px;border-top:1px solid rgba(33,91,64,.12)}
+.vhg-trust div{display:flex;align-items:center;justify-content:center;gap:8px;font-size:14px;font-weight:800;color:#24362d;text-align:center}
+
+@media(max-width:768px){
+.vz-footer{padding:46px 22px 24px;border-radius:28px 28px 0 0;margin-top:50px}
+.vz-footer-wrap{grid-template-columns:1fr;gap:36px}
+.vz-footer-logo{justify-content:center}
+.vz-footer-logo div{font-size:32px}
+.vhg{margin:20px 14px 28px;padding:20px 16px;border-radius:20px}
+.vhg h2{font-size:24px}
+.vhg p{font-size:15px;margin-bottom:18px}
+.vhg-grid{grid-template-columns:1fr;gap:10px}
+.vhg-card{padding:15px 16px;font-size:15px;border-radius:14px}
+.vhg-trust{grid-template-columns:1fr 1fr;gap:10px}
+.vhg-trust div{font-size:13px}
+}
+</style>
+
+<footer class="vz-footer">
+  <div class="vz-footer-wrap">
+    <div>
+      <div class="vz-footer-logo">
+        <img src="https://www.vycesano.cz/favicon.png" alt="Vyčesáno.cz">
+        <div>Vyčesáno<span>.cz</span></div>
+      </div>
+    </div>
+
+    <div>
+      <h4>Zákaznická sekce</h4>
+      <div class="vz-footer-links">
+        <a href="/faq/">FAQ</a>
+        <a href="/obchodni-podminky/">Obchodní podmínky</a>
+        <a href="/podminky-ochrany-osobnich-udaju/">Ochrana osobních údajů</a>
+        <a href="/tipy-rady/">Tipy a rady</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Kategorie</h4>
+      <div class="vz-footer-links">
+        <a href="/proti-linani/">Proti línání</a>
+        <a href="/pro-psy/">Pro psy</a>
+        <a href="/pro-kocky/">Pro kočky</a>
+        <a href="/lekarna-pro-mazlicky/">Lékárna pro mazlíčky</a>
+        <a href="/skrabadla/">Škrabadla</a>
+      </div>
+    </div>
+
+    <div>
+      <h4>Kontakt</h4>
+      <div class="vz-contact">
+        <div>📞 <a href="tel:774318382">774 318 382</a></div>
+        <div>✉️ <a href="mailto:info@vycesano.cz">info@vycesano.cz</a></div>
+        <div>🚚 Odeslání do 24 hodin</div>
+        <div>🚚 Doprava zdarma od 1499 Kč</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="vz-bottom">© 2026 Vyčesáno.cz — Všechna práva vyhrazena</div>
+</footer>
+
+<script>
+(function(){
+function homeGuide(){
+if(!document.body||(!document.body.classList.contains('type-index')&&!document.body.classList.contains('in-index'))||document.getElementById('vhg'))return;
+var h=document.querySelector('.carousel-inner,.homepage-slides,.slides,.banners-row');if(!h)return;
+var s=document.createElement('section');s.id='vhg';s.className='vhg';
+s.innerHTML='<h2>Co hledáte pro svého mazlíčka?</h2><p>Vyberte si podle toho, jestli doma řešíte chlupy, péči o psa, kočku, zdraví nebo zábavu.</p><div class="vhg-grid"><a class="vhg-card" href="/proti-linani/">🧹 Proti línání <span>›</span></a><a class="vhg-card" href="/pro-psy/">🐶 Pro psy <span>›</span></a><a class="vhg-card" href="/pro-kocky/">🐱 Pro kočky <span>›</span></a><a class="vhg-card" href="/lekarna-pro-mazlicky/">💚 Lékárna pro mazlíčky <span>›</span></a><a class="vhg-card" href="/skrabadla/">🪵 Škrabadla <span>›</span></a><a class="vhg-card" href="/letni-kolekce/">☀️ Letní výbava <span>›</span></a></div><div class="vhg-trust"><div>🚚 Odeslání do 24 hodin</div><div>🚚 Doprava zdarma od 1499 Kč</div><div>💳 Bezpečná platba</div><div>↩️ Vrácení do 14 dnů</div></div>';
+h.insertAdjacentElement('afterend',s);
+}
+
+function cleanupOldText(){
+var newShipping='Doprava zdarma od 1499 Kč',oldShipping='Doprava zdarma od '+(1000-1)+' Kč',coupon='CHLU'+'PY10',firstOrder='prvn'+'í objedn'+'ávku',gift=String.fromCodePoint(0x1F381);
+document.querySelectorAll('body *').forEach(function(el){
+if(el.children.length||!el.textContent)return;
+el.textContent=el.textContent.split(gift+' 10 % na '+firstOrder+': '+coupon).join('🚚 '+newShipping).split('10 % na '+firstOrder+': '+coupon).join(newShipping).split(coupon).join('').split(oldShipping+'.').join(newShipping+'.').split(oldShipping).join(newShipping);
+});
+}
+
+function run(){homeGuide();cleanupOldText();}
+if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',run)}else{run()}
+setTimeout(run,500);setTimeout(run,1500);setTimeout(run,3000);
+})();
+</script>
