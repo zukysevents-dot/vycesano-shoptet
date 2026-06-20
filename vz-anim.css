@@ -1,0 +1,30 @@
+/* ============================================================
+   Vyčesáno.cz – jemné prémiové animace
+   Failsafe: třídu .vz-reveal přidává až JS, takže když skript
+   neproběhne, obsah je normálně viditelný. Respektuje
+   prefers-reduced-motion.
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce){
+  .vz-reveal{opacity:1!important;transform:none!important;}
+}
+
+@media (prefers-reduced-motion: no-preference){
+  .vz-reveal{
+    opacity:0;
+    transform:translateY(18px);
+    transition:opacity .55s cubic-bezier(.4,0,.2,1),
+               transform .55s cubic-bezier(.4,0,.2,1);
+  }
+  .vz-reveal.is-in{
+    opacity:1;
+    transform:none;
+  }
+
+  /* Jemný stagger karet v jednom bloku */
+  .products-block .product.vz-reveal:nth-child(2){transition-delay:.05s;}
+  .products-block .product.vz-reveal:nth-child(3){transition-delay:.10s;}
+  .products-block .product.vz-reveal:nth-child(4){transition-delay:.15s;}
+  .products-block .product.vz-reveal:nth-child(5){transition-delay:.05s;}
+  .products-block .product.vz-reveal:nth-child(6){transition-delay:.10s;}
+}

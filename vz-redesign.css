@@ -157,8 +157,50 @@
 }
 
 /* ------------------------------------------------------------
-   4) HERO – jemné vyladění (bez závislosti na 404 obrázku)
+   4) HERO – jemné vyladění
    ------------------------------------------------------------ */
 #vz-homepage-hero-auto.vz-brand-hero{
   margin-top:18px!important;
+}
+
+/* ------------------------------------------------------------
+   5) NADPISY SEKCÍ (Nejprodávanější apod.)
+   ------------------------------------------------------------ */
+.content .homepage-group-title,
+.content-wrapper .homepage-group-title{
+  position:relative!important;
+  text-align:center!important;
+  margin:38px 0 22px!important;
+  padding-bottom:14px!important;
+  color:var(--vz-g-800)!important;
+  font-size:clamp(23px,2.4vw,33px)!important;
+  font-weight:950!important;
+  letter-spacing:-.02em!important;
+}
+.content .homepage-group-title:after,
+.content-wrapper .homepage-group-title:after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  bottom:0!important;
+  transform:translateX(-50%)!important;
+  width:64px!important;
+  height:4px!important;
+  border-radius:var(--vz-r-pill)!important;
+  background:linear-gradient(90deg,var(--vz-g),var(--vz-gold))!important;
+}
+
+/* ------------------------------------------------------------
+   6) SEKCE „Co hledáte" – dlaždice a trust prvky
+   ------------------------------------------------------------ */
+.vhg-card{
+  transition:transform var(--vz-t),box-shadow var(--vz-t),border-color var(--vz-t)!important;
+}
+.vhg-card:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:var(--vz-shadow-sm)!important;
+  border-color:var(--vz-line-strong)!important;
+}
+.vhg-trust > *{
+  transition:transform var(--vz-t)!important;
 }
