@@ -4,6 +4,11 @@
    Bez emoji – inline SVG ikony (currentColor).
    ============================================================ */
 (function(){
+  /* Kompat: starý admin kód nenastavuje html.vz-ready (dělá to inline
+     skript v novém head kódu) – nastav ji i odsud, ať skrytí nativní
+     hlavičky funguje během přechodu na nové admin kódy. Idempotentní. */
+  document.documentElement.classList.add('vz-ready');
+
   var NEW_SHIPPING='Doprava zdarma od 1 499 Kč';
   var OLD_SHIPPING='Doprava zdarma od '+(1000-1)+' Kč';
   var OLD_SHIPPING_2='Doprava zdarma od 1499 Kč';
