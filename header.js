@@ -1,114 +1,129 @@
+/* ============================================================
+   Vyčesáno.cz – vlastní hlavička (top bar, logo, hledání, menu)
+   + úklid zastaralých textů ze Shoptet obsahu.
+   Bez emoji – inline SVG ikony (currentColor).
+   ============================================================ */
 (function(){
-  var NEW_SHIPPING='Doprava zdarma od 1499 Kč';
+  var NEW_SHIPPING='Doprava zdarma od 1 499 Kč';
   var OLD_SHIPPING='Doprava zdarma od '+(1000-1)+' Kč';
+  var OLD_SHIPPING_2='Doprava zdarma od 1499 Kč';
   var COUPON='CHLU'+'PY10';
   var FIRST_ORDER='první'+' objednávku';
   var GIFT=String.fromCodePoint(0x1f381);
+
+  /* --- SVG ikony (stroke 1.8, currentColor) --- */
+  function ico(name){
+    var P='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">';
+    var d={
+      truck:'<path d="M1 5h13v11H1zM14 9h4l4 4v3h-8z"/><circle cx="6" cy="18.5" r="1.8"/><circle cx="17.5" cy="18.5" r="1.8"/>',
+      bolt:'<path d="M13 2 4 14h6l-1 8 9-12h-6l1-8z"/>',
+      undo:'<path d="M9 14 4 9l5-5"/><path d="M4 9h10a6 6 0 0 1 0 12h-3"/>',
+      phone:'<path d="M22 16.9v2.5a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.4 19.4 0 0 1-6-6A19.8 19.8 0 0 1 2.1 3.7 2 2 0 0 1 4.1 1.5h2.5a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.8a2 2 0 0 1-.45 2.1L7.8 9.15a16 16 0 0 0 6 6l1.05-1.05a2 2 0 0 1 2.1-.45c.9.34 1.84.57 2.8.7a2 2 0 0 1 1.75 2.05z"/>',
+      search:'<circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/>',
+      cart:'<circle cx="9" cy="21" r="1.5"/><circle cx="19" cy="21" r="1.5"/><path d="M2.5 3h2l2.6 12.4a2 2 0 0 0 2 1.6h9.7a2 2 0 0 0 2-1.6L22.5 7H6"/>',
+      paw:'<circle cx="7" cy="8.5" r="1.8"/><circle cx="12" cy="6.5" r="1.8"/><circle cx="17" cy="8.5" r="1.8"/><path d="M12 11.5c-2.6 0-5.5 2.5-5.5 5 0 1.4 1.1 2.5 2.5 2.5 1.1 0 2-.5 3-.5s1.9.5 3 .5c1.4 0 2.5-1.1 2.5-2.5 0-2.5-2.9-5-5.5-5z"/>'
+    }[name]||'';
+    return P+d+'</svg>';
+  }
+  function icoFb(){return '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13.5 21v-7h2.4l.4-2.9h-2.8V9.2c0-.84.23-1.4 1.44-1.4h1.53V5.2c-.26-.04-1.17-.11-2.23-.11-2.2 0-3.71 1.34-3.71 3.8v2.13H8.1V14h2.43v7h2.97z"/></svg>';}
+  function icoIg(){return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.3" cy="6.7" r="1.15" fill="currentColor" stroke="none"/></svg>';}
 
   function removeNode(el){if(el&&el.parentNode)el.parentNode.removeChild(el)}
   function norm(v){return(v||'').toString().replace(/\s+/g,' ').trim().toLowerCase()}
   function isProtiLinaniPage(){return window.location.pathname.replace(/\/+$/,'')==='/proti-linani'}
   function isPromoProductsHeading(t){return t==='nejprodávanější'||t==='nejprodavanejsi'||t==='doporučujeme'||t==='doporucujeme'}
 
-  function insertHeaderStyle(){
-    if(document.getElementById('vz-header-featured-style'))return;
-    var css='.vz-social-links{display:flex;align-items:center;justify-content:center;gap:10px}.vz-social-links a{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;border-radius:999px;background:rgba(255,255,255,.18);color:#fff!important;text-decoration:none!important;font-weight:950;line-height:1}.vz-menu-main{grid-template-columns:repeat(6,minmax(0,1fr))!important}.vz-menu-featured{grid-template-columns:repeat(3,minmax(0,1fr))!important;margin-top:9px!important;background:rgba(234,223,207,.72)!important}.vz-menu-featured a{min-height:56px!important;display:flex!important;align-items:center!important;justify-content:center!important;gap:9px!important;padding:8px 12px!important;line-height:1!important}.vz-menu-featured a span{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;min-width:30px;border-radius:999px;background:#fff;box-shadow:0 6px 14px rgba(0,0,0,.1);font-size:16px}.vz-menu-featured a b,.vz-menu-featured a small{display:block}.vz-menu-featured a b{font-size:13px;font-weight:950;letter-spacing:.03em}.vz-menu-featured a small{font-size:10.5px;font-weight:900;opacity:.9;margin-top:2px}.vz-menu-featured .pharm,.vz-menu-main .mob-pharm{background:linear-gradient(135deg,#e4f6e8,#c5e6cf)!important;color:#1f5a3d!important;border-color:#78b889!important}.vz-menu-featured .smart{background:linear-gradient(135deg,#fff1c8,#f2cd6d)!important;color:#5c3c08!important;border-color:#d6a34a!important}.vz-menu-featured .travel{background:linear-gradient(135deg,#e6eefc,#cbdcf7)!important;color:#25456f!important;border-color:#8aa9d8!important}.vz-menu-main .mob-pharm{display:none!important}.vz-menu-featured a:hover,.vz-menu-featured a.is-active,.vz-menu-main .mob-pharm:hover,.vz-menu-main .mob-pharm.is-active{background:var(--vz-g)!important;color:#fff!important;border-color:var(--vz-g)!important}@media(max-width:1100px){.vz-menu-main{grid-template-columns:repeat(3,1fr)!important}.vz-menu-featured{grid-template-columns:1fr!important}.vz-menu-featured a{min-height:48px!important}}@media(max-width:768px){.vz-menu-main{grid-template-columns:1fr 1fr!important}.vz-menu-main .mob-pharm{display:flex!important}.vz-menu-featured{grid-template-columns:1fr!important}.vz-menu-featured .pharm{display:none!important}.vz-menu-featured a{min-height:46px!important}.vz-menu-featured a b{font-size:12px}.vz-menu-featured a small{font-size:10px}.vz-menu-main .cat,.vz-menu-main .mob-pharm{grid-column:auto!important}.vz-menu-main .key,.vz-menu-main .toi,.vz-menu-main .hot{grid-column:1/3!important}}';
-    var s=document.createElement('style');s.id='vz-header-featured-style';s.textContent=css;document.head.appendChild(s);
-  }
-
-  function loadBrandLogoFix(){
-    if(document.getElementById('vz-brand-logo-fix-css'))return;
-    var l=document.createElement('link');
-    l.id='vz-brand-logo-fix-css';
-    l.rel='stylesheet';
-    l.href='https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/brand-logo-fix.css?v=20260605b';
-    document.head.appendChild(l);
-  }
-
-  function insertHeroBrandSpotlightStyle(){
-    if(!document.getElementById('vz-brand-spotlight-style')){
-      var css='.vz-brand-hero__spotlight-logos{position:absolute!important;top:76px!important;right:34px!important;width:238px!important;display:grid!important;grid-template-columns:1fr!important;gap:12px!important;z-index:4!important}.vz-brand-hero__spotlight-logo{min-height:72px!important;display:flex!important;align-items:center!important;justify-content:center!important;padding:9px 15px!important;overflow:hidden!important;border:1px solid rgba(33,91,64,.14)!important;border-radius:16px!important;background:rgba(255,255,255,.94)!important;box-shadow:0 12px 28px rgba(24,55,40,.13)!important;text-decoration:none!important;transition:transform .18s ease,box-shadow .18s ease!important}.vz-brand-hero__spotlight-logo:hover{transform:translateY(-2px)!important;box-shadow:0 16px 34px rgba(24,55,40,.2)!important}.vz-brand-hero__spotlight-logo img{display:block!important;width:100%!important;max-width:196px!important;height:50px!important;object-fit:contain!important}.vz-brand-hero__spotlight-logo--petsafe{background:#123f76!important;border-color:#123f76!important}.vz-brand-hero__spotlight-logo--petsafe img{max-width:174px!important;height:54px!important}.vz-brand-hero__spotlight-logo--animology{background:#191614!important;border-color:#191614!important}.vz-brand-hero__spotlight-logo--animology img{max-width:190px!important;height:50px!important}@media(max-width:1120px){.vz-brand-hero__spotlight-logos{position:relative!important;top:auto!important;right:auto!important;width:auto!important;grid-template-columns:repeat(3,minmax(0,1fr))!important;gap:10px!important;margin:20px 0 0!important}.vz-brand-hero__spotlight-logo{min-height:66px!important;padding:8px 12px!important}.vz-brand-hero__spotlight-logo img{max-width:180px!important;height:46px!important}.vz-brand-hero__spotlight-logo--petsafe img{max-width:154px!important;height:48px!important}.vz-brand-hero__spotlight-logo--animology img{max-width:170px!important;height:46px!important}}@media(max-width:600px){.vz-brand-hero__spotlight-logos{grid-template-columns:1fr!important;gap:8px!important;margin-top:16px!important}.vz-brand-hero__spotlight-logo{min-height:58px!important}.vz-brand-hero__spotlight-logo img,.vz-brand-hero__spotlight-logo--petsafe img,.vz-brand-hero__spotlight-logo--animology img{height:42px!important;max-width:180px!important}}';
-      var s=document.createElement('style');s.id='vz-brand-spotlight-style';s.textContent=css;document.head.appendChild(s);
-    }
-    loadBrandLogoFix();
-  }
-
-  function insertHeroBrandSpotlight(){
-    var hero=document.querySelector('.vz-brand-hero');
-    if(!hero||document.getElementById('vz-brand-spotlight-logos'))return;
-    insertHeroBrandSpotlightStyle();
-    var logos=
-      '<div id="vz-brand-spotlight-logos" class="vz-brand-hero__spotlight-logos" aria-label="Další oblíbené značky">'+
-        '<a class="vz-brand-hero__spotlight-logo" href="/vyhledavani/?string=Beeztees" aria-label="Zobrazit produkty Beeztees"><img src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/assets/brands/beeztees.jpg?v=20260605" alt="Beeztees" loading="lazy"></a>'+
-        '<a class="vz-brand-hero__spotlight-logo vz-brand-hero__spotlight-logo--petsafe" href="/vyhledavani/?string=PetSafe" aria-label="Zobrazit produkty PetSafe"><img src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/assets/brands/petsafe.jpg?v=20260605" alt="PetSafe" loading="lazy"></a>'+
-        '<a class="vz-brand-hero__spotlight-logo vz-brand-hero__spotlight-logo--animology" href="/vyhledavani/?string=Animology" aria-label="Zobrazit produkty Animology"><img src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/assets/brands/animology.jpg?v=20260605" alt="Animology" loading="lazy"></a>'+
-      '</div>';
-    var currentLogos=hero.querySelector('.vz-brand-hero__logos');
-    if(currentLogos)currentLogos.insertAdjacentHTML('beforebegin',logos);else hero.insertAdjacentHTML('beforeend',logos);
-  }
-
+  /* Na /proti-linani schovat duplicitní promo výpis nad kategorií.
+     Cílí přímo na Shoptet wrapper (.products-top-wrapper) a maže ho
+     jen když jeho nadpis odpovídá promo bloku – žádné procházení
+     sourozenců (dřív hrozilo smazání až 60 elementů výpisu). */
   function hideProtiLinaniPromoProducts(){
     if(!isProtiLinaniPage()||!document.body)return;
-    var hs=[].slice.call(document.querySelectorAll('h1,h2,h3,h4'));
-    var start=null,stop=null;
-    hs.forEach(function(h){var t=norm(h.textContent);if(!start&&isPromoProductsHeading(t))start=h;if(!stop&&(t==='řazení produktů'||t==='razení produktů'||t==='výpis produktů'))stop=h});
-    if(!start)return;
-    var n=start,i=0;
-    while(n&&n!==stop&&i<60){var next=n.nextElementSibling;removeNode(n);n=next;i++}
+    [].slice.call(document.querySelectorAll('.products-top-wrapper')).forEach(function(w){
+      var h=w.querySelector('h1,h2,h3,h4');
+      if(h&&isPromoProductsHeading(norm(h.textContent)))removeNode(w);
+    });
   }
 
+  /* Přepis zastaralých textů (starý práh dopravy, kupón).
+     TreeWalker + zápis jen při reálné změně. */
   function cleanupLegacyTexts(root){
     root=root||document.body;if(!root)return;
     var walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,null),nodes=[];
     while(walker.nextNode())nodes.push(walker.currentNode);
     nodes.forEach(function(node){
       var v=node.nodeValue||'',o=v;
-      v=v.split(OLD_SHIPPING+'.').join(NEW_SHIPPING+'.').split(OLD_SHIPPING).join(NEW_SHIPPING);
+      if(v.indexOf(OLD_SHIPPING)===-1&&v.indexOf(OLD_SHIPPING_2)===-1&&v.indexOf(COUPON)===-1&&v.indexOf('sleva na '+FIRST_ORDER)===-1&&!/bestsellery/i.test(v))return;
+      v=v.split(OLD_SHIPPING+'.').join(NEW_SHIPPING+'.').split(OLD_SHIPPING).join(NEW_SHIPPING).split(OLD_SHIPPING_2).join(NEW_SHIPPING);
       v=v.split('BESTSELLERY').join('DOPORUČUJEME').split('Bestsellery').join('Doporučujeme').split('bestsellery').join('doporučujeme');
-      [GIFT+' '+'10'+' % na '+FIRST_ORDER+': '+COUPON,'10'+' % na '+FIRST_ORDER+': '+COUPON,'sleva na '+FIRST_ORDER,COUPON,FIRST_ORDER].forEach(function(t){v=v.split(t).join('')});
+      /* mazat jen celé promo věty + mrtvý kupón – NE samotné 'první objednávku'
+         (to se může legitimně objevit v popisu produktu nebo článku) */
+      [GIFT+' '+'10'+' % na '+FIRST_ORDER+': '+COUPON,'10'+' % na '+FIRST_ORDER+': '+COUPON,'sleva na '+FIRST_ORDER,COUPON].forEach(function(t){v=v.split(t).join('')});
       if(v!==o)node.nodeValue=v.replace(/\s{2,}/g,' ').trim();
     });
-    document.querySelectorAll('.vz-top__inner>div').forEach(function(item){var t=(item.textContent||'').trim();if(!t||t.indexOf(COUPON)!==-1||t.indexOf(FIRST_ORDER)!==-1)removeNode(item)});
   }
 
   function insertHeader(){
-    if(!document.body)return;
-    insertHeaderStyle();cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();removeNode(document.getElementById('vz-custom-header'));
+    if(!document.body||document.getElementById('vz-custom-header'))return;
     var header=
       '<div id="vz-custom-header">'+
         '<div class="vz-top"><div class="vz-top__inner">'+
-          '<div>🚚 Doprava zdarma od 1499 Kč</div><div>⚡ Odeslání do 24 hodin</div><div>↩️ Vrácení do 14 dnů</div><div>🐶 Pro psy a kočky skladem</div><div>📞 <a href="tel:774318382">774 318 382</a></div>'+
-          '<div class="vz-social-links"><a href="https://www.facebook.com/profile.php?id=61589413723529" target="_blank" rel="noopener noreferrer" aria-label="Facebook">f</a><a href="https://www.instagram.com/vycesano.cz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">◎</a></div>'+
+          '<div>'+ico('truck')+'Doprava zdarma od 1 499 Kč</div>'+
+          '<div>'+ico('bolt')+'Odeslání do 24 hodin</div>'+
+          '<div>'+ico('undo')+'Vrácení do 14 dnů</div>'+
+          '<div>'+ico('phone')+'<a href="tel:774318382">774 318 382</a></div>'+
+          '<div class="vz-social-links"><a href="https://www.facebook.com/profile.php?id=61589413723529" target="_blank" rel="noopener noreferrer" aria-label="Facebook">'+icoFb()+'</a><a href="https://www.instagram.com/vycesano.cz/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">'+icoIg()+'</a></div>'+
         '</div></div>'+
         '<div class="vz-header"><div class="vz-header__box">'+
           '<div class="vz-header__main">'+
-            '<a href="/" class="vz-logo"><img src="https://www.vycesano.cz/favicon.png" alt="Vyčesáno.cz"><div>Vyčesáno<span>.cz</span></div></a>'+
-            '<form action="/vyhledavani/" method="get" class="vz-search"><input type="text" name="string" placeholder="Hledejte škrabadla, kartáče, obojky..."><button type="submit">HLEDAT</button></form>'+
-            '<a href="/kosik/" class="vz-cart" aria-label="Košík">🛒</a>'+
+            '<a href="/" class="vz-logo"><img src="https://www.vycesano.cz/favicon.png" alt="Vyčesáno.cz"><div><strong>Vyčesáno<span>.cz</span></strong><small>Péče a vychytávky pro psy a kočky</small></div></a>'+
+            '<form action="/vyhledavani/" method="get" class="vz-search" role="search"><input type="text" name="string" placeholder="Hledejte kartáče, škrabadla, obojky…" aria-label="Hledat na Vyčesáno.cz"><button type="submit">'+ico('search')+'Hledat</button></form>'+
+            '<a href="/kosik/" class="vz-cart">'+ico('cart')+'<b>Košík</b></a>'+
           '</div>'+
-          '<nav class="vz-menu vz-menu-main" aria-label="Hlavní kategorie">'+
-            '<a href="/pro-psy/">🐶 PRO PSY</a><a href="/pro-kocky/">🐱 PRO KOČKY</a><a href="/proti-linani/" class="key">🧴 PROTI LÍNÁNÍ</a><a href="/doporucujeme/" class="toi">⭐ DOPORUČUJEME</a><a href="/skrabadla/" class="cat">🪵 ŠKRABADLA</a><a href="/lekarna-pro-mazlicky/" class="mob-pharm">💚 LÉKÁRNA</a><a href="/letni-kolekce/" class="hot">☀️ LETNÍ KOLEKCE</a>'+
-          '</nav>'+
-          '<nav class="vz-menu vz-menu-featured" aria-label="Speciální kategorie">'+
-            '<a href="/lekarna-pro-mazlicky/" class="pharm"><span>💚</span><div><b>LÉKÁRNA</b><small>PRO MAZLÍČKY</small></div></a>'+
-            '<a href="/chytre-vychytavky/" class="smart"><span>💡</span><div><b>CHYTRÉ</b><small>VYCHYTÁVKY</small></div></a>'+
-            '<a href="/cestovani/" class="travel"><span>🚗</span><div><b>CESTOVÁNÍ</b><small>JIŽ BRZY</small></div></a>'+
+          '<nav class="vz-menu" aria-label="Hlavní kategorie">'+
+            '<a href="/pro-psy/">Pro psy</a>'+
+            '<a href="/pro-kocky/">Pro kočky</a>'+
+            '<a href="/proti-linani/" class="key">Proti línání</a>'+
+            '<a href="/skrabadla/">Škrabadla</a>'+
+            '<a href="/lekarna-pro-mazlicky/">Lékárna</a>'+
+            '<a href="/chytre-vychytavky/">Chytré vychytávky</a>'+
+            '<a href="/letni-kolekce/">Letní kolekce</a>'+
           '</nav>'+
         '</div></div>'+
       '</div>';
     document.body.insertAdjacentHTML('afterbegin',header);
     var path=window.location.pathname.replace(/\/$/,'')+'/';
-    document.querySelectorAll('.vz-menu a').forEach(function(a){var h=a.getAttribute('href');if(h&&h!=='/'&&path.indexOf(h)===0){a.classList.add('is-active');a.setAttribute('aria-current','page')}});
-    cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();
+    document.querySelectorAll('.vz-menu a').forEach(function(a){
+      var h=a.getAttribute('href');
+      if(h&&h!=='/'&&(path===h||path.indexOf(h)===0)){a.classList.add('is-active');a.setAttribute('aria-current','page')}
+    });
   }
 
-  function scheduleCleanup(){
-    loadBrandLogoFix();cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();insertHeroBrandSpotlight();
-    setTimeout(function(){loadBrandLogoFix();cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();insertHeroBrandSpotlight()},250);
-    setTimeout(function(){loadBrandLogoFix();cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();insertHeroBrandSpotlight()},1200);
-    if(window.MutationObserver&&document.body){var ob=new MutationObserver(function(){loadBrandLogoFix();cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts();insertHeroBrandSpotlight()});ob.observe(document.body,{childList:true,subtree:true,characterData:true});setTimeout(function(){ob.disconnect()},6000)}
+  /* Jediný, debouncovaný observer; jen childList; konec po 6 s. */
+  var observerStarted=false;
+  function watchLateContent(){
+    if(observerStarted||!window.MutationObserver||!document.body)return;
+    observerStarted=true;
+    var scheduled=false;
+    var ob=new MutationObserver(function(){
+      if(scheduled)return;
+      scheduled=true;
+      requestAnimationFrame(function(){
+        scheduled=false;
+        cleanupLegacyTexts(document.body);
+        hideProtiLinaniPromoProducts();
+      });
+    });
+    ob.observe(document.body,{childList:true,subtree:true});
+    setTimeout(function(){ob.disconnect()},6000);
   }
-  function init(){loadBrandLogoFix();insertHeroBrandSpotlightStyle();insertHeader();scheduleCleanup()}
+
+  function init(){
+    insertHeader();
+    cleanupLegacyTexts(document.body);
+    hideProtiLinaniPromoProducts();
+    watchLateContent();
+  }
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
-  window.addEventListener('load',scheduleCleanup);
+  window.addEventListener('load',function(){cleanupLegacyTexts(document.body);hideProtiLinaniPromoProducts()});
 })();

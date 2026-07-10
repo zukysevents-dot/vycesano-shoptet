@@ -2,80 +2,57 @@
 Vyčesáno.cz – kód do ZÁHLAVÍ (Shoptet administrace → Vzhled a obsah →
 Editor → HTML kód → Záhlaví / před </head>)
 
-Toto je AKTUÁLNÍ produkční verze záhlaví včetně redesignu.
-Změny oproti původní verzi:
-  + tokens.css (design systém, načítá se první)
-  + vz-redesign.css + vz-anim.css (redesign vrstva, načítá se poslední)
-  + hero-assets.js nahrazuje logo-image-loader.js a hero-pet-fast-v2.js
-    (přímé URL obrázků – stejný vzhled, bez záplavy 404)
-  + vz-anim.js (jemné scroll-reveal animace)
-Zápatí (.vz-footer + sekce .vhg) zůstává beze změny – viz shoptet-footer-code.html.
+Release v30 – redesign:
+  + písmo Manrope (Google Fonts, latin-ext)
+  + soubory pinnuté na git TAG v30 (immutable – budoucí commity do main
+    už produkci samovolně nezmění; nový release = nový tag + úprava URL)
+  + failsafe: třídu html.vz-ready nastavuje inline skript níže; watchdog
+    ji odebere, když se custom hlavička nevloží (výpadek JS/CDN) –
+    nativní Shoptet navigace pak zůstane viditelná a web použitelný
+  – ODSTRANĚNO: brand-banner.css, aaa-logo-kill.css (mrtvý kód),
+    inline skript s SVG brand kartami (nahrazeno kategorie kartami v hero),
+    reviews.js (smyšlené recenze -> vz-trust.js s ověřitelnými sliby)
+  – ODSTRANĚNO: <link rel="canonical"> a <meta name="description">
+    (duplikovaly Shoptet – canonical mířil z KAŽDÉ stránky na titulku,
+    což je vážná SEO chyba; Shoptet si obojí generuje sám a správně)
 -->
 
-<!-- Vycesano.cz – HEAD -->
+<!-- Vycesano.cz – HEAD v30 -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- Písmo (latin-ext kvůli češtině) -->
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;700;800&display=swap" rel="stylesheet">
+
+<!-- Custom hlavička se smí skrýt jen když poběží JS (watchdog níže) -->
+<script>document.documentElement.classList.add('vz-ready');</script>
 
 <!-- design tokens – musí být první -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/tokens.css?v=26">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/header.css?v=24">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/product.css?v=23">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/brand-banner.css?v=23">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/homepage-hero-v2.css?v=25">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/aaa-logo-kill.css?v=23">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/header.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/product.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/homepage-hero-v2.css">
 <!-- redesign vrstva – musí být poslední -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/vz-redesign.css?v=26">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/vz-anim.css?v=26">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/vz-redesign.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/vz-anim.css">
 
-<style>
-#vz-brand-spotlight-logos{display:none!important}
-#vz-clean-right-brand-cards{
-  position:absolute!important;top:72px!important;right:36px!important;width:330px!important;
-  display:grid!important;gap:14px!important;z-index:99999!important
-}
-#vz-clean-right-brand-cards a{
-  height:118px!important;padding:15px 18px!important;border-radius:20px!important;
-  background:rgba(255,255,255,.92)!important;border:1px solid rgba(33,91,64,.12)!important;
-  box-shadow:0 14px 36px rgba(0,0,0,.08)!important;display:flex!important;
-  flex-direction:column!important;align-items:center!important;justify-content:center!important;
-  text-align:center!important;text-decoration:none!important;color:#173222!important;
-  font-weight:950!important;overflow:hidden!important;box-sizing:border-box!important
-}
-#vz-clean-right-brand-cards a:hover{transform:translateY(-3px)!important;box-shadow:0 20px 44px rgba(0,0,0,.12)!important}
-.vz-clean-logo{display:block!important;width:100%!important;height:56px!important;background-repeat:no-repeat!important;background-position:center!important;background-size:contain!important;margin:0 auto 9px!important}
-#vz-clean-right-brand-cards small{font-size:14px!important;line-height:1.25!important;color:#203c2d!important;font-weight:850!important}
-.vz-logo-beeztees{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='120' viewBox='0 0 520 120'%3E%3Crect width='520' height='120' fill='white'/%3E%3Ctext x='12' y='78' font-family='Arial,Helvetica,sans-serif' font-size='66' font-weight='800' fill='%233b2619'%3Ebeeztees%3C/text%3E%3Ccircle cx='420' cy='60' r='31' fill='%23f7f6f1'/%3E%3Cpath d='M405 35c20 2 34 13 40 30-15-8-30-12-48-10z' fill='%236da2c8'/%3E%3Cpath d='M404 84c-15-6-26-18-28-36 16 7 29 16 41 30z' fill='%237e8a52'/%3E%3Cpath d='M442 78c-8 15-21 23-39 22 7-15 18-25 33-32z' fill='%2376604b'/%3E%3Cpath d='M426 31c12 0 22 6 28 16-12 2-22 0-32-7z' fill='%23e5a22e'/%3E%3C/svg%3E")}
-.vz-logo-petsafe{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='120' viewBox='0 0 520 120'%3E%3Crect width='520' height='120' fill='white'/%3E%3Crect x='34' y='27' width='430' height='67' rx='20' fill='%23ffdf00'/%3E%3Ctext x='72' y='75' font-family='Arial,Helvetica,sans-serif' font-size='58' font-weight='900' fill='%230b4380'%3EPetSafe%3C/text%3E%3Cpath d='M375 38l54 29-16 20h-38z' fill='%230b4380'/%3E%3Ccircle cx='322' cy='40' r='5' fill='%230b4380'/%3E%3C/svg%3E")}
-.vz-logo-animology{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='120' viewBox='0 0 520 120'%3E%3Crect width='520' height='120' fill='%23191614'/%3E%3Ctext x='22' y='59' font-family='Arial Black,Arial,Helvetica,sans-serif' font-size='57' font-weight='900' fill='white'%3Eanimology%3C/text%3E%3Ctext x='25' y='94' font-family='Arial,Helvetica,sans-serif' font-size='32' fill='white'%3Epet care excellence%3C/text%3E%3Ctext x='458' y='29' font-family='Arial,Helvetica,sans-serif' font-size='22' fill='white'%3E%C2%AE%3C/text%3E%3C/svg%3E")}
-@media(max-width:1120px){
-  #vz-clean-right-brand-cards{position:relative!important;top:auto!important;right:auto!important;width:auto!important;grid-template-columns:repeat(3,1fr)!important;margin-top:18px!important}
-}
-@media(max-width:600px){#vz-clean-right-brand-cards{grid-template-columns:1fr!important}}
-</style>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/header.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/product.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/homepage-hero-inject.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/hero-assets.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/vz-anim.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/vz-trust.js" defer></script>
 
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/header.js?v=20260605b" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/product.js?v=23" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/homepage-hero-inject.js?v=25" defer></script>
-<!-- hero-assets.js nahrazuje logo-image-loader.js + hero-pet-fast-v2.js (bez 404) -->
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/hero-assets.js?v=26" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/vz-anim.js?v=26" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@main/reviews.js?v=27" defer></script>
-
+<!-- Watchdog: když se do 2,5 s po načtení nevloží custom hlavička,
+     vrať nativní Shoptet navigaci (odebráním html.vz-ready) -->
 <script>
-(function(){
-function run(){
-var h=document.querySelector('.vz-brand-hero');if(!h)return;
-var old=document.getElementById('vz-brand-spotlight-logos');if(old)old.remove();
-if(document.getElementById('vz-clean-right-brand-cards'))return;
-var b=document.createElement('div');b.id='vz-clean-right-brand-cards';
-b.innerHTML='<a href="/vyhledavani/?string=Beeztees"><span class="vz-clean-logo vz-logo-beeztees"></span><small>Doplňky, hračky a vybavení ›</small></a><a href="/vyhledavani/?string=PetSafe"><span class="vz-clean-logo vz-logo-petsafe"></span><small>Chytré produkty pro mazlíčky ›</small></a><a href="/vyhledavani/?string=Animology"><span class="vz-clean-logo vz-logo-animology"></span><small>Kosmetika a péče o srst ›</small></a>';
-var l=h.querySelector('.vz-brand-hero__logos');if(l)h.insertBefore(b,l);else h.appendChild(b);
-}
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',run);else run();
-window.addEventListener('load',run);
-setTimeout(run,300);setTimeout(run,1000);setTimeout(run,2500);
-})();
+window.addEventListener('load',function(){
+  setTimeout(function(){
+    if(!document.getElementById('vz-custom-header')){
+      document.documentElement.classList.remove('vz-ready');
+    }
+  },2500);
+});
 </script>
-
-<meta name="description" content="Vyčesáno.cz – produkty a doplňky pro psy a kočky. Péče, hračky, kartáče, ochrana proti klíšťatům a vychytávky pro spokojené mazlíčky.">
-<link rel="canonical" href="https://www.vycesano.cz/">

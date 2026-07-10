@@ -6,7 +6,7 @@
   if(!('IntersectionObserver' in window)) return;
   if(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
-  var SEL = '.products-block .product, .vhg-card, .content .homepage-group-title, .content-wrapper .homepage-group-title';
+  var SEL = '.products-block .product, .vhg-card, .vz-trust-card, .content .homepage-group-title, .content-wrapper .homepage-group-title';
 
   var io = new IntersectionObserver(function(entries){
     entries.forEach(function(e){
@@ -28,6 +28,7 @@
     setTimeout(function(){  /* failsafe: nic nesmí zůstat skryté */
       [].slice.call(document.querySelectorAll('.vz-reveal:not(.is-in)')).forEach(function(el){
         el.classList.add('is-in');
+        io.unobserve(el);
       });
     }, 2600);
   }

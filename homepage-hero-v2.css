@@ -1,6 +1,9 @@
-/* Vyčesáno.cz homepage hero v2 */
+/* ============================================================
+   Vyčesáno.cz – hero na titulce (v2)
+   Markup vkládá homepage-hero-inject.js, foto pozadí hero-assets.js.
+   ============================================================ */
 
-/* Pokud na titulce ještě zůstane původní velký obrázkový banner/slider, skryje se. */
+/* Původní obrázkový banner/slider na titulce se skryje. */
 .content:has(.vz-brand-hero) .carousel-inner,
 .content:has(.vz-brand-hero) .homepage-slides,
 .content:has(.vz-brand-hero) .slides,
@@ -13,353 +16,335 @@
 }
 
 .vz-brand-hero{
-  max-width:1540px!important;
-  min-height:560px!important;
-  margin:22px auto 34px!important;
-  padding:52px 36px 30px!important;
-  border-radius:32px!important;
-  border:1px solid rgba(33,91,64,.16)!important;
-  box-shadow:0 30px 90px rgba(0,0,0,.11)!important;
+  max-width:var(--vz-maxw)!important;
+  margin:20px auto 30px!important;
+  padding:44px 40px 32px!important;
+  border-radius:var(--vz-r-xl)!important;
+  border:1px solid var(--vz-line)!important;
+  box-shadow:var(--vz-shadow)!important;
   background:
-    radial-gradient(circle at 76% 48%,rgba(255,255,255,.66) 0 13%,transparent 34%),
-    radial-gradient(circle at 92% 28%,rgba(214,163,74,.24),transparent 31%),
-    radial-gradient(circle at 7% 92%,rgba(33,91,64,.10),transparent 26%),
-    linear-gradient(135deg,#f8f4ec 0%,#eadfcf 48%,#e3f0d7 100%)!important;
+    radial-gradient(circle at 88% 20%,rgba(214,163,74,.16),transparent 34%),
+    radial-gradient(circle at 4% 96%,rgba(33,91,64,.08),transparent 30%),
+    linear-gradient(120deg,#faf7f0 0%,#f1ead9 55%,#e6f0da 100%)!important;
   display:grid!important;
-  grid-template-columns:minmax(0,1fr) minmax(430px,.92fr)!important;
-  grid-template-rows:1fr auto!important;
-  gap:24px 34px!important;
+  grid-template-columns:minmax(0,1fr) 350px!important;
+  grid-template-rows:auto auto!important;
+  gap:26px 40px!important;
   align-items:center!important;
   position:relative!important;
   overflow:hidden!important;
 }
 
-.vz-brand-hero:before{
-  content:"🐶  🐱";
-  position:absolute!important;
-  right:44px!important;
-  top:74px!important;
-  z-index:1!important;
-  font-size:150px!important;
-  line-height:1!important;
-  letter-spacing:-18px!important;
-  filter:drop-shadow(0 18px 24px rgba(33,91,64,.13));
-  opacity:.22!important;
-  pointer-events:none!important;
-}
-
-.vz-brand-hero:after{
-  content:"";
-  position:absolute!important;
-  left:-90px!important;
-  bottom:-100px!important;
-  width:290px!important;
-  height:290px!important;
-  border-radius:999px!important;
-  background:rgba(33,91,64,.08)!important;
-  pointer-events:none!important;
-}
-
-.vz-brand-hero__text{
+/* Slot pro foto (vkládá hero-assets.js jako :before) – text i karty nad ním */
+.vz-brand-hero__text,
+.vz-brand-hero__cards,
+.vz-brand-hero__logos{
   position:relative!important;
   z-index:3!important;
+}
+
+/* --- Levý sloupec: text --- */
+.vz-brand-hero__text{
   align-self:center!important;
+  max-width:720px!important;
 }
 
 .vz-brand-hero__label{
   display:inline-flex!important;
   align-items:center!important;
-  gap:9px!important;
-  margin-bottom:18px!important;
-  padding:9px 16px!important;
-  border-radius:999px!important;
+  gap:8px!important;
+  margin-bottom:16px!important;
+  padding:8px 15px!important;
+  border-radius:var(--vz-r-pill)!important;
   background:#fff!important;
-  color:#215b40!important;
-  font-size:13px!important;
-  font-weight:950!important;
-  letter-spacing:.045em!important;
+  color:var(--vz-g)!important;
+  font-size:12.5px!important;
+  font-weight:var(--vz-w-bold)!important;
+  letter-spacing:.05em!important;
   text-transform:uppercase!important;
-  box-shadow:0 10px 26px rgba(0,0,0,.07)!important;
+  box-shadow:var(--vz-shadow-sm)!important;
 }
 
-.vz-brand-hero__label:before{
-  content:"✓";
-  width:24px;
-  height:24px;
-  border-radius:999px;
-  background:#215b40;
-  color:#fff;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  font-size:14px;
+.vz-brand-hero__label svg{
+  width:15px!important;
+  height:15px!important;
+  color:var(--vz-gold-700)!important;
 }
 
 .vz-brand-hero h2{
-  max-width:770px!important;
-  margin:0 0 18px!important;
-  color:#103923!important;
-  font-size:clamp(38px,4.5vw,72px)!important;
-  line-height:.98!important;
-  letter-spacing:-.06em!important;
-  font-weight:950!important;
+  margin:0 0 16px!important;
+  color:var(--vz-g-900)!important;
+  font-family:var(--vz-font)!important;
+  font-size:clamp(34px,3.8vw,58px)!important;
+  line-height:var(--vz-lh-tight)!important;
+  letter-spacing:-.03em!important;
+  font-weight:var(--vz-w-bold)!important;
 }
 
 .vz-brand-hero p{
-  max-width:680px!important;
-  margin:0 0 26px!important;
-  color:#345242!important;
-  font-size:20px!important;
-  line-height:1.52!important;
-  font-weight:750!important;
+  max-width:560px!important;
+  margin:0 0 22px!important;
+  color:#3c5245!important;
+  font-size:17.5px!important;
+  line-height:var(--vz-lh-text)!important;
+  font-weight:var(--vz-w-body)!important;
+}
+
+/* --- CTA --- */
+.vz-brand-hero__cta{
+  display:flex!important;
+  flex-wrap:wrap!important;
+  gap:10px!important;
+  margin-bottom:20px!important;
 }
 
 .vz-brand-hero__btn{
   display:inline-flex!important;
   align-items:center!important;
   justify-content:center!important;
-  min-height:56px!important;
-  padding:0 28px!important;
-  border-radius:999px!important;
-  background:#215b40!important;
+  min-height:52px!important;
+  padding:0 26px!important;
+  border-radius:var(--vz-r-pill)!important;
+  background:var(--vz-g)!important;
   color:#fff!important;
   text-decoration:none!important;
-  font-size:16px!important;
-  font-weight:950!important;
-  box-shadow:0 14px 32px rgba(33,91,64,.28)!important;
-  transition:.18s ease!important;
+  font-family:var(--vz-font)!important;
+  font-size:15.5px!important;
+  font-weight:var(--vz-w-bold)!important;
+  box-shadow:0 12px 28px rgba(33,91,64,.26)!important;
+  transition:background var(--vz-t),transform var(--vz-t),box-shadow var(--vz-t)!important;
 }
 
 .vz-brand-hero__btn:hover{
   transform:translateY(-2px)!important;
-  background:#173222!important;
+  background:var(--vz-g-700)!important;
 }
 
 .vz-brand-hero__btn:after{
   content:"›";
-  margin-left:13px;
-  font-size:27px;
+  margin-left:11px;
+  font-size:22px;
   line-height:1;
 }
 
-.vz-brand-hero__spotlight-logos{
-  position:absolute!important;
-  top:72px!important;
-  right:32px!important;
-  width:238px!important;
-  display:grid!important;
-  grid-template-columns:1fr!important;
-  gap:12px!important;
-  z-index:4!important;
+.vz-brand-hero__btn--ghost{
+  background:transparent!important;
+  color:var(--vz-g-800)!important;
+  border:2px solid rgba(33,91,64,.35)!important;
+  box-shadow:none!important;
 }
 
-.vz-brand-hero__spotlight-logo{
-  min-height:72px!important;
+.vz-brand-hero__btn--ghost:hover{
+  background:rgba(255,255,255,.7)!important;
+  border-color:var(--vz-g)!important;
+}
+
+/* --- Trust řádek --- */
+.vz-brand-hero__trust{
   display:flex!important;
+  flex-wrap:wrap!important;
+  gap:8px 20px!important;
+  margin:0!important;
+  padding:0!important;
+  list-style:none!important;
+}
+
+.vz-brand-hero__trust li{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:7px!important;
+  color:#33493c!important;
+  font-size:13.5px!important;
+  font-weight:var(--vz-w-semi)!important;
+}
+
+.vz-brand-hero__trust svg{
+  width:16px!important;
+  height:16px!important;
+  color:var(--vz-g)!important;
+  flex:0 0 16px!important;
+}
+
+/* --- Pravý sloupec: kategorie karty --- */
+.vz-brand-hero__cards{
+  display:grid!important;
+  gap:12px!important;
+  align-self:center!important;
+}
+
+.vz-brand-hero__cards a{
+  display:grid!important;
+  grid-template-columns:44px minmax(0,1fr) auto!important;
+  align-items:center!important;
+  gap:13px!important;
+  min-height:82px!important;
+  padding:14px 16px!important;
+  border-radius:var(--vz-r-lg)!important;
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid var(--vz-line)!important;
+  box-shadow:var(--vz-shadow-sm)!important;
+  text-decoration:none!important;
+  transition:transform var(--vz-t),box-shadow var(--vz-t),border-color var(--vz-t)!important;
+}
+
+.vz-brand-hero__cards a:hover{
+  transform:translateY(-2px)!important;
+  box-shadow:var(--vz-shadow)!important;
+  border-color:var(--vz-line-strong)!important;
+}
+
+.vz-brand-hero__cards a:after{
+  content:"›";
+  color:var(--vz-g);
+  font-size:24px;
+  font-weight:var(--vz-w-semi);
+  line-height:1;
+}
+
+.vz-brand-hero__cards i{
+  display:inline-flex!important;
   align-items:center!important;
   justify-content:center!important;
-  padding:9px 15px!important;
-  overflow:hidden!important;
-  border:1px solid rgba(33,91,64,.14)!important;
-  border-radius:16px!important;
-  background:rgba(255,255,255,.95)!important;
-  box-shadow:0 12px 28px rgba(24,55,40,.13)!important;
-  text-decoration:none!important;
-  transition:transform .18s ease,box-shadow .18s ease!important;
+  width:44px!important;
+  height:44px!important;
+  border-radius:12px!important;
+  background:var(--vz-g-50)!important;
+  color:var(--vz-g)!important;
 }
 
-.vz-brand-hero__spotlight-logo:hover{
-  transform:translateY(-2px)!important;
-  box-shadow:0 16px 34px rgba(24,55,40,.20)!important;
-}
+.vz-brand-hero__cards i svg{width:22px;height:22px;}
 
-.vz-brand-hero__spotlight-logo img{
+.vz-brand-hero__cards strong{
   display:block!important;
-  width:100%!important;
-  max-width:196px!important;
-  height:50px!important;
-  object-fit:contain!important;
+  color:var(--vz-g-900)!important;
+  font-size:15.5px!important;
+  font-weight:var(--vz-w-bold)!important;
+  line-height:1.25!important;
 }
 
-.vz-brand-hero__spotlight-logo--petsafe{
-  background:#123f76!important;
-  border-color:#123f76!important;
+.vz-brand-hero__cards small{
+  display:block!important;
+  margin-top:2px!important;
+  color:var(--vz-muted)!important;
+  font-size:13px!important;
+  font-weight:var(--vz-w-body)!important;
+  line-height:1.3!important;
 }
 
-.vz-brand-hero__spotlight-logo--petsafe img{
-  max-width:174px!important;
-  height:54px!important;
-}
-
-.vz-brand-hero__spotlight-logo--animology{
-  background:#191614!important;
-  border-color:#191614!important;
-}
-
-.vz-brand-hero__spotlight-logo--animology img{
-  max-width:190px!important;
-  height:50px!important;
-}
-
+/* --- Spodní pás: reálná loga značek (obrázky vkládá hero-assets.js) --- */
 .vz-brand-hero__logos{
-  position:relative!important;
-  z-index:3!important;
-  grid-column:1 / 3!important;
+  grid-column:1 / -1!important;
   display:grid!important;
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  gap:15px!important;
+  gap:14px!important;
   align-self:end!important;
 }
 
 .vz-brand-hero__logo{
-  min-height:126px!important;
-  padding:17px 18px!important;
-  border-radius:20px!important;
+  min-height:104px!important;
+  padding:14px 16px!important;
+  border-radius:var(--vz-r-lg)!important;
   background:rgba(255,255,255,.88)!important;
-  border:1px solid rgba(33,91,64,.12)!important;
-  box-shadow:0 14px 36px rgba(0,0,0,.08)!important;
+  border:1px solid var(--vz-line)!important;
+  box-shadow:var(--vz-shadow-sm)!important;
   display:grid!important;
-  grid-template-columns:1fr!important;
-  gap:8px!important;
+  gap:6px!important;
   align-items:center!important;
   justify-content:center!important;
   text-align:center!important;
   text-decoration:none!important;
-  color:#173222!important;
-  transition:.18s ease!important;
+  color:var(--vz-ink)!important;
+  transition:transform var(--vz-t),box-shadow var(--vz-t)!important;
   overflow:hidden!important;
-  backdrop-filter:blur(6px);
 }
 
 .vz-brand-hero__logo:hover{
-  transform:translateY(-3px)!important;
-  box-shadow:0 20px 44px rgba(0,0,0,.12)!important;
+  transform:translateY(-2px)!important;
+  box-shadow:var(--vz-shadow)!important;
 }
 
-.vz-brand-hero__logo:before{
-  content:"";
-  display:block!important;
-  width:100%!important;
-  height:58px!important;
-  border-radius:14px!important;
-  background-repeat:no-repeat!important;
-  background-position:center!important;
-  background-size:contain!important;
-  background-color:transparent!important;
-}
-
+/* Textový fallback, dokud se nenačte obrázek loga */
 .vz-brand-hero__logo strong{
+  display:block!important;
+  color:var(--vz-g-800)!important;
+  font-size:17px!important;
+  font-weight:var(--vz-w-bold)!important;
+  letter-spacing:-.01em!important;
+}
+
+.vz-brand-hero__logo.has-real-logo strong{
   display:none!important;
 }
 
 .vz-brand-hero__logo span{
   display:block!important;
-  font-size:14px!important;
+  font-size:13px!important;
   line-height:1.35!important;
-  color:#203c2d!important;
-  font-weight:850!important;
+  color:var(--vz-muted)!important;
+  font-weight:var(--vz-w-semi)!important;
 }
 
 .vz-brand-hero__logo span:after{
   content:"›";
-  margin-left:9px;
-  color:#215b40;
-  font-size:24px;
+  margin-left:8px;
+  color:var(--vz-g);
+  font-size:18px;
   line-height:.7;
-  vertical-align:-2px;
+  vertical-align:-1px;
 }
 
+/* --- Responzivita --- */
 @media(max-width:1100px){
   .vz-brand-hero{
-    min-height:0!important;
     grid-template-columns:1fr!important;
     grid-template-rows:auto!important;
+    padding:32px 24px 24px!important;
   }
 
-  .vz-brand-hero:before{
-    right:14px!important;
-    top:28px!important;
-    font-size:94px!important;
-    opacity:.15!important;
-  }
-
-  .vz-brand-hero__spotlight-logos{
-    position:relative!important;
-    top:auto!important;
-    right:auto!important;
-    width:auto!important;
+  .vz-brand-hero__cards{
     grid-template-columns:repeat(3,minmax(0,1fr))!important;
-    gap:10px!important;
   }
 
-  .vz-brand-hero__spotlight-logo{
-    min-height:66px!important;
-    padding:8px 12px!important;
+  .vz-brand-hero__cards a{
+    grid-template-columns:40px minmax(0,1fr)!important;
+    min-height:72px!important;
   }
 
-  .vz-brand-hero__spotlight-logo img{
-    height:46px!important;
-    max-width:180px!important;
-  }
-
-  .vz-brand-hero__spotlight-logo--petsafe img{
-    height:48px!important;
-    max-width:154px!important;
-  }
-
-  .vz-brand-hero__spotlight-logo--animology img{
-    height:46px!important;
-    max-width:170px!important;
-  }
-
-  .vz-brand-hero__logos{
-    grid-column:auto!important;
+  .vz-brand-hero__cards a:after{
+    display:none!important;
   }
 }
 
 @media(max-width:768px){
   .vz-brand-hero{
-    margin:12px 10px 24px!important;
-    padding:28px 18px 18px!important;
-    border-radius:24px!important;
+    margin:12px 10px 22px!important;
+    padding:26px 16px 16px!important;
+    border-radius:var(--vz-r-lg)!important;
   }
 
   .vz-brand-hero h2{
-    font-size:36px!important;
-    letter-spacing:-.045em!important;
+    font-size:31px!important;
   }
 
   .vz-brand-hero p{
-    font-size:16px!important;
+    font-size:15.5px!important;
   }
 
-  .vz-brand-hero__spotlight-logos,
+  .vz-brand-hero__btn{
+    width:100%!important;
+  }
+
+  .vz-brand-hero__cards,
   .vz-brand-hero__logos{
     grid-template-columns:1fr!important;
     gap:10px!important;
   }
 
-  .vz-brand-hero__spotlight-logo{
-    min-height:58px!important;
-  }
-
-  .vz-brand-hero__spotlight-logo img,
-  .vz-brand-hero__spotlight-logo--petsafe img,
-  .vz-brand-hero__spotlight-logo--animology img{
-    height:42px!important;
-    max-width:180px!important;
+  .vz-brand-hero__cards a{
+    min-height:64px!important;
   }
 
   .vz-brand-hero__logo{
-    min-height:96px!important;
-    border-radius:17px!important;
-  }
-
-  .vz-brand-hero__logo:before{
-    height:48px!important;
-  }
-
-  .vz-brand-hero__btn{
-    width:100%!important;
+    min-height:88px!important;
   }
 }

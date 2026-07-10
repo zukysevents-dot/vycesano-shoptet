@@ -1,21 +1,21 @@
 /* ============================================================
    Vyčesáno.cz – redesign vrstva (načítá se jako POSLEDNÍ)
-   Profesionálnější, prodejnější vzhled v rámci zelené identity.
-   Staví na tokens.css. Nepřepisuje strukturu – jen rafinace.
+   Produktové karty, nadpisy sekcí, nativní patička, úklid.
+   Staví na tokens.css.
    ============================================================ */
 
 /* ------------------------------------------------------------
    1) ÚKLID / STABILIZACE
    ------------------------------------------------------------ */
 
-/* Na titulce jsou 3 hero bloky (1 injektovaný JS + 2 duplicity
-   z admin obsahu). Necháme jen injektovaný, zbytek skryjeme. */
+/* Na titulce jsou krom injektovaného hero i duplicity z admin
+   obsahu. Necháme jen injektovaný (#vz-homepage-hero-auto). */
 .vz-brand-hero:not(#vz-homepage-hero-auto){
   display:none!important;
 }
 
-/* Systémová Shoptet patička -> nenápadný, čistý právní proužek
-   (custom zelená .vz-footer zůstává hlavní patičkou). */
+/* Systémová Shoptet patička -> nenápadný právní proužek
+   (hlavní patičkou je zelená .vz-footer ze zápatí). */
 #footer.footer{
   background:var(--vz-surface)!important;
   border-top:1px solid var(--vz-line)!important;
@@ -30,21 +30,18 @@
   flex-wrap:wrap!important;
   max-width:var(--vz-maxw)!important;
   margin:0 auto!important;
-  font-size:12.5px!important;
-  color:var(--vz-muted)!important;
+  font-size:13px!important;
+  color:#4c5a51!important;
 }
 #footer.footer .footer-bottom a{
-  color:var(--vz-muted)!important;
-  opacity:.85!important;
+  color:#4c5a51!important;
 }
 #footer.footer .footer-bottom a:hover{
   color:var(--vz-g)!important;
-  opacity:1!important;
 }
 
 /* ------------------------------------------------------------
-   2) PRODUKTOVÉ KARTY (nejprodávanější + výpisy kategorií)
-   Dosud bez custom stylu – největší prodejní zásah.
+   2) PRODUKTOVÉ KARTY (titulka + výpisy kategorií)
    ------------------------------------------------------------ */
 
 .products-block .product{
@@ -64,7 +61,7 @@
 }
 
 .products-block .product .p:hover{
-  transform:translateY(-4px)!important;
+  transform:translateY(-3px)!important;
   box-shadow:var(--vz-shadow)!important;
   border-color:var(--vz-line-strong)!important;
 }
@@ -81,36 +78,59 @@
   transition:transform var(--vz-t-smooth)!important;
 }
 .products-block .product .p:hover .image img{
-  transform:scale(1.045)!important;
+  transform:scale(1.04)!important;
 }
 
-/* Název produktu */
+/* Název produktu – max 2 řádky, stabilní výška karty */
 .products-block .product .name,
 .products-block .product .name a{
   color:var(--vz-g-800)!important;
-  font-weight:800!important;
-  line-height:1.32!important;
+  font-family:var(--vz-font)!important;
+  font-weight:var(--vz-w-semi)!important;
+  font-size:15px!important;
+  line-height:1.35!important;
+}
+.products-block .product .name{
+  display:-webkit-box!important;
+  -webkit-line-clamp:2!important;
+  -webkit-box-orient:vertical!important;
+  overflow:hidden!important;
+  min-height:2.7em!important;
 }
 .products-block .product .name a:hover{
   color:var(--vz-g)!important;
 }
 
-/* Dostupnost (skladem) */
+/* Dostupnost (skladem) – tečka místo křiklavého textu */
 .products-block .product .availability,
 .products-block .product .availability-label{
   color:var(--vz-g-600)!important;
-  font-weight:800!important;
+  font-weight:var(--vz-w-semi)!important;
+  font-size:13px!important;
+}
+.products-block .product .availability:before{
+  content:""!important;
+  display:inline-block!important;
+  width:8px!important;
+  height:8px!important;
+  margin-right:6px!important;
+  border-radius:var(--vz-r-pill)!important;
+  background:#2f9e63!important;
+  vertical-align:1px!important;
 }
 
 /* Cena – výrazná, čitelná */
 .products-block .product .price-final,
 .products-block .product .price.price-final{
   color:var(--vz-g-900)!important;
-  font-weight:950!important;
+  font-family:var(--vz-font)!important;
+  font-weight:var(--vz-w-bold)!important;
+  font-size:19px!important;
 }
 .products-block .product .price-standard,
 .products-block .product del{
   color:var(--vz-muted)!important;
+  font-weight:var(--vz-w-body)!important;
 }
 
 /* Tlačítko Do košíku */
@@ -118,34 +138,73 @@
 .products-block .product .btn-cart{
   border:0!important;
   border-radius:var(--vz-r-sm)!important;
-  background:linear-gradient(135deg,var(--vz-g-600),var(--vz-g))!important;
+  background:var(--vz-g)!important;
   color:#fff!important;
-  font-weight:900!important;
-  box-shadow:0 10px 22px rgba(33,91,64,.20)!important;
-  transition:filter var(--vz-t),transform var(--vz-t),box-shadow var(--vz-t)!important;
+  font-family:var(--vz-font)!important;
+  font-weight:var(--vz-w-bold)!important;
+  box-shadow:none!important;
+  transition:background var(--vz-t),transform var(--vz-t)!important;
 }
 .products-block .product .add-to-cart-button:hover,
 .products-block .product .btn-cart:hover{
-  filter:brightness(.97)!important;
+  background:var(--vz-g-700)!important;
   transform:translateY(-1px)!important;
-  box-shadow:0 14px 28px rgba(33,91,64,.26)!important;
 }
 
-/* Štítky (Akce / Tip / Novinka / sleva) – pilulky */
+/* Štítky – decentní pilulky v barvách brandu */
 .products-block .product .flag,
 .products-block .product .flags > *{
   border-radius:var(--vz-r-pill)!important;
-  font-weight:900!important;
-  letter-spacing:.02em!important;
-  box-shadow:0 6px 14px rgba(25,45,35,.12)!important;
+  font-family:var(--vz-font)!important;
+  font-weight:var(--vz-w-bold)!important;
+  font-size:11.5px!important;
+  letter-spacing:.03em!important;
+  box-shadow:none!important;
 }
 .products-block .product .flag-discount{
   background:var(--vz-sale)!important;
   color:#fff!important;
 }
+.products-block .product .flag-tip,
+.products-block .product .flag-recommended{
+  background:var(--vz-gold)!important;
+  color:var(--vz-g-900)!important;
+}
+.products-block .product .flag-new{
+  background:var(--vz-g-100)!important;
+  color:var(--vz-g-800)!important;
+}
 
 /* ------------------------------------------------------------
-   3) CUSTOM PATIČKA (.vz-footer) – jemné doladění
+   3) NADPISY SEKCÍ (Nejprodávanější apod.)
+   ------------------------------------------------------------ */
+.content .homepage-group-title,
+.content-wrapper .homepage-group-title{
+  position:relative!important;
+  text-align:center!important;
+  margin:40px 0 22px!important;
+  padding-bottom:14px!important;
+  color:var(--vz-g-800)!important;
+  font-family:var(--vz-font)!important;
+  font-size:clamp(23px,2.4vw,31px)!important;
+  font-weight:var(--vz-w-bold)!important;
+  letter-spacing:-.02em!important;
+}
+.content .homepage-group-title:after,
+.content-wrapper .homepage-group-title:after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  bottom:0!important;
+  transform:translateX(-50%)!important;
+  width:52px!important;
+  height:3px!important;
+  border-radius:var(--vz-r-pill)!important;
+  background:var(--vz-gold)!important;
+}
+
+/* ------------------------------------------------------------
+   4) CUSTOM PATIČKA (.vz-footer) – jemné doladění
    ------------------------------------------------------------ */
 .vz-footer a{
   transition:color var(--vz-t),opacity var(--vz-t)!important;
@@ -157,41 +216,7 @@
 }
 
 /* ------------------------------------------------------------
-   4) HERO – jemné vyladění
-   ------------------------------------------------------------ */
-#vz-homepage-hero-auto.vz-brand-hero{
-  margin-top:18px!important;
-}
-
-/* ------------------------------------------------------------
-   5) NADPISY SEKCÍ (Nejprodávanější apod.)
-   ------------------------------------------------------------ */
-.content .homepage-group-title,
-.content-wrapper .homepage-group-title{
-  position:relative!important;
-  text-align:center!important;
-  margin:38px 0 22px!important;
-  padding-bottom:14px!important;
-  color:var(--vz-g-800)!important;
-  font-size:clamp(23px,2.4vw,33px)!important;
-  font-weight:950!important;
-  letter-spacing:-.02em!important;
-}
-.content .homepage-group-title:after,
-.content-wrapper .homepage-group-title:after{
-  content:""!important;
-  position:absolute!important;
-  left:50%!important;
-  bottom:0!important;
-  transform:translateX(-50%)!important;
-  width:64px!important;
-  height:4px!important;
-  border-radius:var(--vz-r-pill)!important;
-  background:linear-gradient(90deg,var(--vz-g),var(--vz-gold))!important;
-}
-
-/* ------------------------------------------------------------
-   6) SEKCE „Co hledáte" – dlaždice a trust prvky
+   5) SEKCE „Co hledáte" – dlaždice
    ------------------------------------------------------------ */
 .vhg-card{
   transition:transform var(--vz-t),box-shadow var(--vz-t),border-color var(--vz-t)!important;
@@ -200,7 +225,4 @@
   transform:translateY(-2px)!important;
   box-shadow:var(--vz-shadow-sm)!important;
   border-color:var(--vz-line-strong)!important;
-}
-.vhg-trust > *{
-  transition:transform var(--vz-t)!important;
 }

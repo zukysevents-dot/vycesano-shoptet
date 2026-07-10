@@ -1,12 +1,12 @@
 /* ============================================================
    Vyčesáno.cz – design tokens (jeden zdroj pravdy)
-   Evoluce stávající zelené identity, beze změny brandu.
-   Načítá se jako první v shoptet-head-code.html.
+   Evoluce zelené identity. Načítá se PRVNÍ v shoptet-head-code.html.
+   Písmo Manrope se načítá <link>em v head kódu (display=swap).
    ============================================================ */
 
 :root{
   /* --- Zelená (primární brand) --- */
-  --vz-g:#215b40;          /* hlavní zelená (používá i header.js) */
+  --vz-g:#215b40;          /* hlavní zelená */
   --vz-g-600:#2d714f;
   --vz-g-700:#1c4d35;
   --vz-g-800:#173d2b;      /* tmavý text / nadpisy */
@@ -16,33 +16,39 @@
 
   /* --- Zlatá (akcent) --- */
   --vz-gold:#d6a34a;
-  --vz-gold-700:#bf8b2f;
+  --vz-gold-700:#a97c25;   /* tmavší kvůli kontrastu na světlé */
   --vz-gold-50:#fff8e8;
 
   /* --- Akce / sleva --- */
-  --vz-sale:#cf3a2f;
-  --vz-sale-50:#fdeceb;
+  --vz-sale:#c8372c;
 
   /* --- Neutrály a plochy --- */
-  --vz-ink:#173222;        /* základní text */
-  --vz-muted:#54665b;      /* sekundární text */
-  --vz-bg:#ffffff;
-  --vz-surface:#fbf8f1;    /* krémová plocha */
-  --vz-cream:#f8f4ec;
-  --vz-line:rgba(33,91,64,.12);
-  --vz-line-strong:rgba(33,91,64,.24);
+  --vz-ink:#1d2b22;        /* základní text */
+  --vz-muted:#5b6a60;      /* sekundární text */
+  --vz-bg:#ffffff;         /* plochy karet – VŽDY bílá */
+  --vz-surface:#f6f3ec;    /* podklad stránky (teplá krémová) */
+  --vz-line:rgba(33,91,64,.14);
+  --vz-line-strong:rgba(33,91,64,.28);
+
+  /* --- Typografie --- */
+  --vz-font:'Manrope','Segoe UI',Arial,sans-serif;
+  --vz-w-body:500;
+  --vz-w-semi:700;
+  --vz-w-bold:800;         /* nadpisy, ceny, CTA – nic těžšího */
+  --vz-lh-tight:1.12;      /* velké nadpisy */
+  --vz-lh-ui:1.3;          /* menu, tlačítka, karty */
+  --vz-lh-text:1.55;       /* delší text */
 
   /* --- Rádiusy --- */
-  --vz-r-sm:12px;
-  --vz-r:16px;
-  --vz-r-lg:22px;
-  --vz-r-xl:30px;
+  --vz-r-sm:10px;
+  --vz-r:14px;
+  --vz-r-lg:18px;
+  --vz-r-xl:26px;
   --vz-r-pill:999px;
 
-  /* --- Stíny --- */
-  --vz-shadow-sm:0 6px 16px rgba(25,45,35,.07);
-  --vz-shadow:0 14px 34px rgba(25,45,35,.09);
-  --vz-shadow-lg:0 26px 64px rgba(25,45,35,.12);
+  /* --- Stíny (jen dvě úrovně) --- */
+  --vz-shadow-sm:0 4px 14px rgba(25,45,35,.06);
+  --vz-shadow:0 16px 40px rgba(25,45,35,.10);
 
   /* --- Přechody --- */
   --vz-t:.18s ease;
@@ -52,8 +58,12 @@
   --vz-maxw:1540px;
 }
 
-/* --- Jemné globální vyladění (nenarušuje Shoptet layout) --- */
+/* --- Globální základ (vlastníkem podkladu je tokens.css) --- */
 body{
+  background:var(--vz-surface)!important;
+  font-family:var(--vz-font)!important;
+  font-weight:var(--vz-w-body);
+  color:var(--vz-ink);
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
   text-rendering:optimizeLegibility;
@@ -64,14 +74,14 @@ body{
   color:#fff;
 }
 
-/* Přístupnost: viditelný focus pro klávesnici */
+/* Přístupnost: viditelný focus pro klávesnici (zelená má kontrast i na bílé) */
 a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible,
 [tabindex]:focus-visible{
-  outline:3px solid var(--vz-gold);
+  outline:3px solid var(--vz-g-600);
   outline-offset:2px;
   border-radius:6px;
 }
