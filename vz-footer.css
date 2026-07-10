@@ -1,0 +1,241 @@
+/* ============================================================
+   Vyčesáno.cz – zelená patička (.vz-footer) + sekce „Co hledáte"
+   (.vhg). Markup vkládá vz-footer.js (Zápatí má v Shoptetu limit
+   8192 znaků, proto je vše v externích souborech).
+   ============================================================ */
+
+.vz-footer{
+  background:linear-gradient(180deg,var(--vz-g-700),var(--vz-g-800));
+  margin-top:64px;
+  padding:56px 20px 26px;
+  color:#fff;
+  border-radius:28px 28px 0 0;
+}
+
+.vz-footer-wrap{
+  max-width:1450px;
+  margin:auto;
+  display:grid;
+  grid-template-columns:1.3fr 1fr 1fr 1.1fr;
+  gap:44px;
+}
+
+.vz-footer-logo{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  margin-bottom:14px;
+}
+
+.vz-footer-logo img{
+  width:54px;
+  height:54px;
+  background:#fff;
+  border-radius:14px;
+  padding:7px;
+}
+
+.vz-footer-logo div{
+  font-family:var(--vz-font);
+  font-size:30px;
+  font-weight:var(--vz-w-bold);
+  letter-spacing:-.02em;
+  line-height:1;
+  color:#fff;
+}
+
+.vz-footer-logo span{
+  color:var(--vz-gold);
+}
+
+.vz-footer-claim{
+  margin:0;
+  max-width:300px;
+  color:rgba(255,255,255,.75);
+  font-size:14px;
+  line-height:1.55;
+}
+
+.vz-footer h4{
+  font-size:13px;
+  margin:0 0 16px;
+  font-weight:var(--vz-w-bold);
+  text-transform:uppercase;
+  letter-spacing:.07em;
+  color:rgba(255,255,255,.6);
+}
+
+.vz-footer-links,
+.vz-contact{
+  display:flex;
+  flex-direction:column;
+  gap:11px;
+}
+
+.vz-footer-links a{
+  color:rgba(255,255,255,.88);
+  font-size:15px;
+  text-decoration:none;
+  width:max-content;
+}
+
+.vz-contact > div{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  color:rgba(255,255,255,.88);
+  font-size:15px;
+}
+
+.vz-contact svg{
+  width:16px;
+  height:16px;
+  flex:0 0 16px;
+  color:var(--vz-gold);
+}
+
+.vz-contact a{
+  color:#fff;
+  font-weight:var(--vz-w-bold);
+  text-decoration:none;
+}
+
+.vz-bottom{
+  max-width:1450px;
+  margin:44px auto 0;
+  padding-top:20px;
+  border-top:1px solid rgba(255,255,255,.12);
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+  flex-wrap:wrap;
+  font-size:13px;
+  color:rgba(255,255,255,.6);
+}
+
+.vz-bottom a{
+  color:rgba(255,255,255,.75);
+  text-decoration:none;
+}
+
+.vz-bottom a:hover{
+  color:#fff;
+}
+
+/* --- Sekce „Co hledáte pro svého mazlíčka?" (titulka) --- */
+.vhg{
+  max-width:1180px;
+  margin:26px auto 34px;
+  padding:26px;
+  background:var(--vz-bg);
+  border:1px solid var(--vz-line);
+  border-radius:var(--vz-r-xl);
+  box-shadow:var(--vz-shadow-sm);
+}
+
+.vhg h2{
+  margin:0 0 6px;
+  font-family:var(--vz-font);
+  font-size:clamp(22px,2.3vw,28px);
+  font-weight:var(--vz-w-bold);
+  letter-spacing:-.02em;
+  line-height:1.2;
+  color:var(--vz-g-800);
+  text-align:center;
+}
+
+.vhg > p{
+  margin:0 auto 20px;
+  max-width:640px;
+  font-size:15px;
+  line-height:1.5;
+  color:var(--vz-muted);
+  text-align:center;
+}
+
+.vhg-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+
+.vhg-card{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:14px 16px;
+  background:var(--vz-surface);
+  border:1px solid var(--vz-line);
+  border-radius:var(--vz-r);
+  text-decoration:none!important;
+  color:var(--vz-g-800)!important;
+  font-size:15px;
+  font-weight:var(--vz-w-semi);
+}
+
+.vhg-card svg{
+  width:19px;
+  height:19px;
+  flex:0 0 19px;
+  color:var(--vz-g);
+}
+
+.vhg-card span{
+  margin-left:auto;
+  color:var(--vz-g);
+  font-size:20px;
+  line-height:1;
+}
+
+.vhg-card:hover{
+  background:var(--vz-g);
+  color:#fff!important;
+}
+
+.vhg-card:hover svg,
+.vhg-card:hover span{
+  color:#fff;
+}
+
+/* --- Responzivita --- */
+@media(max-width:900px){
+  .vz-footer-wrap{
+    grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+}
+
+@media(max-width:768px){
+  .vz-footer{
+    padding:44px 20px 22px;
+    border-radius:22px 22px 0 0;
+    margin-top:48px;
+  }
+
+  .vz-footer-wrap{
+    grid-template-columns:1fr;
+    gap:30px;
+  }
+
+  .vz-bottom{
+    justify-content:center;
+    text-align:center;
+  }
+
+  .vhg{
+    margin:20px 14px 28px;
+    padding:20px 16px;
+    border-radius:18px;
+  }
+
+  .vhg-grid{
+    grid-template-columns:1fr;
+    gap:9px;
+  }
+
+  .vhg-card{
+    padding:13px 14px;
+    font-size:14px;
+  }
+}

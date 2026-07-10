@@ -2,22 +2,22 @@
 Vyčesáno.cz – kód do ZÁHLAVÍ (Shoptet administrace → Vzhled a obsah →
 Editor → HTML kód → Záhlaví / před </head>)
 
-Release v30 – redesign:
-  + písmo Manrope (Google Fonts, latin-ext)
-  + soubory pinnuté na git TAG v30 (immutable – budoucí commity do main
-    už produkci samovolně nezmění; nový release = nový tag + úprava URL)
-  + failsafe: třídu html.vz-ready nastavuje inline skript níže; watchdog
-    ji odebere, když se custom hlavička nevloží (výpadek JS/CDN) –
-    nativní Shoptet navigace pak zůstane viditelná a web použitelný
-  – ODSTRANĚNO: brand-banner.css, aaa-logo-kill.css (mrtvý kód),
-    inline skript s SVG brand kartami (nahrazeno kategorie kartami v hero),
-    reviews.js (smyšlené recenze -> vz-trust.js s ověřitelnými sliby)
-  – ODSTRANĚNO: <link rel="canonical"> a <meta name="description">
-    (duplikovaly Shoptet – canonical mířil z KAŽDÉ stránky na titulku,
-    což je vážná SEO chyba; Shoptet si obojí generuje sám a správně)
+Release v31 – redesign (v30) + patička v externích souborech:
+  Shoptet pole mají limit 8192 znaků – zelená patička a sekce
+  „Co hledáte" se proto vkládají z vz-footer.css + vz-footer.js.
+  Pole ZÁPATÍ zůstává prázdné; při novém releasu se mění jen tenhle
+  kód (přepsat @v31 na nový tag).
+
+  Failsafe: třídu html.vz-ready nastavuje inline skript níže; watchdog
+  ji odebere, když se custom hlavička nevloží (výpadek JS/CDN) –
+  nativní Shoptet navigace pak zůstane viditelná a web použitelný.
+
+  Záměrně tu NENÍ <link rel="canonical"> ani <meta name="description">
+  (dřívější verze je vkládala globálně – canonical mířil z každé
+  stránky na titulku = vážná SEO chyba; Shoptet si obojí generuje sám).
 -->
 
-<!-- Vycesano.cz – HEAD v30 -->
+<!-- Vycesano.cz – HEAD v31 -->
 <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
 <link rel="dns-prefetch" href="//cdn.jsdelivr.net">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -30,20 +30,23 @@ Release v30 – redesign:
 <script>document.documentElement.classList.add('vz-ready');</script>
 
 <!-- design tokens – musí být první -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/tokens.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/header.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/product.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/homepage-hero-v2.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/tokens.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/header.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/product.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/homepage-hero-v2.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/vz-footer.css">
 <!-- redesign vrstva – musí být poslední -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/vz-redesign.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/vz-anim.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/vz-redesign.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/vz-anim.css">
 
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/header.js" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/product.js" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/homepage-hero-inject.js" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/hero-assets.js" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/vz-anim.js" defer></script>
-<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v30/vz-trust.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/header.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/product.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/homepage-hero-inject.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/hero-assets.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/vz-anim.js" defer></script>
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/vz-trust.js" defer></script>
+<!-- patička + sekce „Co hledáte" (markup se vkládá JS-em, viz komentář) -->
+<script src="https://cdn.jsdelivr.net/gh/zukysevents-dot/vycesano-shoptet@v31/vz-footer.js" defer></script>
 
 <!-- Watchdog: když se do 2,5 s po načtení nevloží custom hlavička,
      vrať nativní Shoptet navigaci (odebráním html.vz-ready) -->

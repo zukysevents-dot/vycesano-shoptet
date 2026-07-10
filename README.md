@@ -10,17 +10,17 @@ přes dva kódy vložené v administraci (**Vzhled a obsah → Editor → HTML k
 
 | Admin sekce | Soubor v repu | Co dělá |
 |---|---|---|
-| **Záhlaví** (před `</head>`) | [`shoptet-head-code.html`](shoptet-head-code.html) | font + CSS + JS |
-| **Zápatí** (před `</body>`) | [`shoptet-footer-code.html`](shoptet-footer-code.html) | zelená patička `.vz-footer` + sekce `.vhg` |
+| **Záhlaví** (před `</head>`) | [`shoptet-head-code.html`](shoptet-head-code.html) | font + CSS + JS (včetně patičky přes `vz-footer.js`) |
+| **Zápatí** (před `</body>`) | [`shoptet-footer-code.html`](shoptet-footer-code.html) | záměrně prázdné (jen komentář) – Shoptet pole má limit 8192 znaků |
 
-Produkce je pinnutá na **git tag** (`@v30`) – immutable reference, kterou
+Produkce je pinnutá na **git tag** (`@v31`) – immutable reference, kterou
 jsDelivr cachuje trvale. Commity do `main` produkci nezmění, dokud se
-nevydá nový tag a neupraví URL v admin kódech.
+nevydá nový tag a neupraví URL v admin kódu.
 
 **Release postup:**
 1. změny commitnout do `main` (ověřit lokálně přes `.preview/`)
-2. `git tag v31 && git push origin main --tags`
-3. v admin kódech (Záhlaví + Zápatí) přepsat `@v30` → `@v31`
+2. `git tag v32 && git push origin main --tags`
+3. v admin kódu **Záhlaví** přepsat `@v31` → `@v32` (Zápatí se nemění)
 
 > Failsafe: skrytí nativní Shoptet hlavičky je podmíněné třídou
 > `html.vz-ready` (nastavuje ji inline skript v head kódu, watchdog ji
@@ -39,6 +39,7 @@ nevydá nový tag a neupraví URL v admin kódech.
 - `homepage-hero-inject.js` + `homepage-hero-v2.css` – hero (benefit copy, 2 CTA, trust řádek, 3 kategorie karty, pás značek).
 - `hero-assets.js` – foto pes+kočka do pozadí hero + reálná loga značek (přímé URL, žádné 404, fallback při chybě obrázku).
 - `vz-trust.js` – sekce „Nakupujte bez starostí" na titulce. **Nahradila smyšlené recenze (reviews.js)** – žádná vymyšlená jména; až budou ověřené recenze (Shoptet/Heureka), patří sem.
+- `vz-footer.css` + `vz-footer.js` – zelená patička `.vz-footer` (všechny stránky) + sekce `.vhg` „Co hledáte" (titulka). Markup vkládá JS, protože Shoptet pole Zápatí má limit 8192 znaků.
 
 **Produkt**
 - `product.css` + `product.js` – detail produktu (cena, dostupnost, trust chipy, průvodce výběrem, nabídka pomoci). Sidebar vlastní `header.css`.
